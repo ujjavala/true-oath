@@ -163,9 +163,33 @@ The endpoint currently exposes the Knowledge Base tools `initial_context`, `know
 
 **Sanity CLI and deployment.** The Sanity CLI is used for schema builds, hosted Studio deployment, document import, dataset visibility checks, and embedding setup. The Studio is deployed at https://true-oath.sanity.studio/. The web experience is a separate Next.js app deployed at https://true-oath.vercel.app/.
 
-### Sanity Capabilities Not Claimed
+### Sanity Functions and Agent Actions
 
-This build does not use the Sanity App SDK, Content Agent, Agent Actions, Functions, Workflows, or a custom Studio plugin. The agent is a small local Node.js MCP client, while Sanity provides the structured content, hosted Studio, embeddings, and Context retrieval layer. Keeping that boundary explicit makes it clear which behavior comes from Sanity and which behavior belongs to the application code.
+The project now uses Sanity's native automation layer for evidence-quality
+review. A `reviewTask` document type gives the Studio a durable queue for
+missing sources, broken references, stale or incomplete evidence, and integrity
+status checks. The custom Studio Structure menu puts `Review queue` first and
+filters it to open and in-review tasks.
+
+The Blueprint in `sanity/sanity.blueprint.ts` provisions the
+`true-oath-review-automation` Stack, a project-scoped robot token, and the
+`review-queue-on-content-change` document Function. It watches published
+evidence, milestones, indicators, assessments, and integrity events. When a
+document needs attention, the Function creates a deduplicated task containing
+the affected document reference, severity, explanation, and suggested next
+step. It never changes a promise status or publishes a political verdict.
+
+Agent Actions provide a second, deliberately constrained workflow. The helper
+in `sanity/scripts/draft-review-agent-action.mjs` uses Sanity's schema-aware
+Generate action to draft `reviewerNotes` for a selected review task. The action
+requires the deployed schema ID and a server-side token, and Sanity's default
+draft-only behavior remains enabled. A human must review the note and decide
+whether to resolve, dismiss, or keep the task open.
+
+This gives True Oath event-driven review, schema-aware drafting, and an
+inspectable Studio workflow without asking AI to decide whether a promise was
+kept. The Function and robot token were deployed through the
+`true-oath-review-automation` Blueprint Stack and verified as completed.
 
 ### Challenges With Sanity
 
@@ -197,7 +221,7 @@ Retrieval: Sanity Context MCP
 Output rule: preserve source links, dates, confidence, and unresolved conflicts
 ```
 
-The True Oath Knowledge Base was created specifically for this project as `kbgnQdlEqXlP`. After reducing the separate Cyber Autopsy Knowledge Base to a focused 46-source import, True Oath’s refresh detected 22 added and 4 changed source units, taking its indexed usage to 41. The Context endpoint continues to serve the previous ready snapshot while the refresh completes; the public web UI reads the live Studio dataset directly through Sanity’s Content API. It does not reuse Cyber Autopsy's dataset or content.
+The True Oath Knowledge Base was created specifically for this project as `kbgnQdlEqXlP`. After reducing the separate Cyber Autopsy Knowledge Base to a focused 46-source import, True Oath’s rebuild completed with 41 indexed source units. The public web UI reads the live Studio dataset directly through Sanity’s Content API, while the agent uses the read-only Context endpoint. It does not reuse Cyber Autopsy's dataset or content.
 
 ## Sanity Project Details
 
@@ -208,6 +232,8 @@ The True Oath Knowledge Base was created specifically for this project as `kbgnQ
 - Hosted Studio: https://true-oath.sanity.studio/
 - Studio app ID: `uk5zu82laqqn2uoecp2yikrq`
 - Knowledge Base public ID: `kbgnQdlEqXlP`
+- Blueprint Stack: `true-oath-review-automation` (`ST-rietwjrd38`)
+- Deployed Function: `review-queue-on-content-change`
 
 Public dataset inspection endpoint:
 
@@ -219,7 +245,7 @@ The True Oath read-only MCP endpoint now exists at `https://api.sanity.io/v1/con
 
 True Oath starts with a small Australia corpus, but the underlying model is meant to travel. The next step is to add more federal elections, then extend the same source-linked structure to state governments and other countries where reliable public records are available. Each new jurisdiction would bring its own election documents, budget conventions, laws, agencies, statistical releases, and standards for official findings.
 
-Future versions could add time-series indicators, parliamentary voting histories, procurement and grant data, automatic reminders when a promised milestone is due, and comparison views that show how different sources describe the same event. A richer agent could also explain why two claims conflict, identify the missing document that would resolve an uncertainty, and carry a human reviewer’s resolution forward as a durable editorial decision in Sanity.
+Future versions could add time-series indicators, parliamentary voting histories, procurement and grant data, scheduled milestone reminders, and comparison views that show how different sources describe the same event. The current Function queue and draft Agent Action create a foundation for those extensions, while a richer agent could explain why two claims conflict, identify the missing document that would resolve an uncertainty, and carry a human reviewer’s resolution forward as a durable editorial decision in Sanity.
 
 The hard problems are as important as the features. A promise can be vague, a target can change, an outcome can be affected by events outside a government’s control, and a media report can flatten a complicated audit into a dramatic headline. Sources can disagree without one being obviously false. That is why True Oath keeps confidence, provenance, dates, status reasons, and “no finding” cases visible instead of forcing every record into a binary score. The current Knowledge Base indexing quota and the work required to curate a public MCP session are practical constraints too.
 

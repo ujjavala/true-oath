@@ -32,6 +32,12 @@ The current web slice uses a small local Australia dataset while the Sanity sche
 
 The first public-source import is now in the True Oath dataset: 9 sources, 4 promises, 4 evidence records, 1 manifesto, and 1 government record. It was collected independently from Cyber Autopsy.
 
+## Evidence coverage
+
+True Oath is intended to ingest as much relevant public evidence as can be verified, including manifestos, election commitment lists, budget papers, legislation, parliamentary Hansard, committee reports, audits, regulator and court records, departmental progress reports, statistical releases, program dashboards, procurement records, official explanations, independent assessments, and competing public claims.
+
+The model distinguishes implementation from outcomes. It records baselines, targets, measurement rules, milestones, blockers, reasons given for missed commitments, indicators, assessments, and contradictions. A government explanation is stored as a claim with a source; it is not automatically accepted as fact.
+
 ## Context agent
 
 Create a True Oath MCP endpoint in Sanity Context with dataset source `wak4l160.production`, using the filter below. The organization token must remain server-side.

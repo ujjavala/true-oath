@@ -64,7 +64,13 @@ Sanity is the evidence layer for True Oath. The Studio schema separates the main
 - `manifesto` records the election document and the party that published it;
 - `promise` records a specific commitment and its current assessment;
 - `source` preserves the publisher, URL, date, and source category;
-- `evidence` records a dated finding and whether it supports, partially supports, contradicts, or is neutral toward a promise.
+- `evidence` records a dated finding and whether it supports, partially supports, contradicts, or is neutral toward a promise;
+- `milestone` records announcements, funding, legislation, starts, delays, cancellations, and delivery events;
+- `indicator` records measurable outcomes against a defined baseline, target, period, and unit;
+- `assessment` records an independent verdict and its reasoning; and
+- `claim` records competing explanations or interpretations without silently treating them as verified facts.
+
+The intended corpus is deliberately broad. It will combine election material with budgets, legislation, Hansard, committee reports, audits, regulator and court records, departmental progress reports, statistical releases, program dashboards, procurement records, official explanations, independent assessments, and competing claims. This lets the agent investigate not only whether a promise was met, but what changed, why delivery may have slipped, whether the stated reason is supported, and whether different sources contradict one another.
 
 The intended Path One agent will connect to the True Oath Sanity Context MCP endpoint. It will retrieve the relevant promises and evidence, follow their source references, compare claims across documents, and answer questions such as:
 

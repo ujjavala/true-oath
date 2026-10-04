@@ -30,7 +30,7 @@ cd web && npm run dev
 
 The current web slice uses a small local Australia dataset while the Sanity schema is being populated. The next ingestion step will add official manifestos, election commitments, budgets, legislation, parliamentary records, and outcome evidence as linked documents.
 
-The first public-source import is now in the True Oath dataset: 9 sources, 4 promises, 4 evidence records, 1 manifesto, and 1 government record. It was collected independently from Cyber Autopsy.
+The first public-source import is now in the True Oath dataset: 15 public sources, 4 promises, 4 evidence records, 1 manifesto, 1 government record, and 4 integrity events. It was collected independently from Cyber Autopsy.
 
 ## Evidence coverage
 
@@ -38,12 +38,14 @@ True Oath is intended to ingest as much relevant public evidence as can be verif
 
 The model distinguishes implementation from outcomes. It records baselines, targets, measurement rules, milestones, blockers, reasons given for missed commitments, indicators, assessments, and contradictions. A government explanation is stored as a claim with a source; it is not automatically accepted as fact.
 
+Integrity evidence is modelled separately from promise verdicts. `integrityEvent` records the mechanism, evidence status, official-finding flag, confidence, source, and whether the event has a demonstrated effect on implementation or is only an integrity risk. The initial Australia corpus includes NACC procurement bribery and misuse-of-office findings, an ANAO conflict-of-interest audit, and a NACC case with no substantiated abuse of office. Allegations are never presented as convictions, and a corruption record is not linked to a promise unless a source demonstrates that connection.
+
 ## Context agent
 
 Create a True Oath MCP endpoint in Sanity Context with dataset source `wak4l160.production`, using the filter below. The organization token must remain server-side.
 
 ```text
-_type in ["source", "promise", "evidence", "manifesto", "government"]
+_type in ["source", "promise", "evidence", "manifesto", "government", "milestone", "indicator", "assessment", "claim", "integrityEvent"]
 ```
 
 Then set `TRUE_OATH_MCP_URL` and `SANITY_ORG_TOKEN` from `.env.example` and run:

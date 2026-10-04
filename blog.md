@@ -36,7 +36,7 @@ npm install
 npm run dev
 ```
 
-The Sanity dataset now contains the first independently collected Australia corpus: 9 official sources, 4 promises, 4 evidence records, 1 manifesto, and 1 government record. The public web experience is still being prepared for deployment.
+The Sanity dataset now contains the first independently collected Australia corpus: 15 public sources, 4 promises, 4 evidence records, 1 manifesto, 1 government record, and 4 integrity events. The public web experience is still being prepared for deployment.
 
 ## Code
 
@@ -69,8 +69,11 @@ Sanity is the evidence layer for True Oath. The Studio schema separates the main
 - `indicator` records measurable outcomes against a defined baseline, target, period, and unit;
 - `assessment` records an independent verdict and its reasoning; and
 - `claim` records competing explanations or interpretations without silently treating them as verified facts.
+- `integrityEvent` records corruption and integrity signals separately from promise verdicts, including mechanism, evidence status, official-finding status, confidence, source, and whether a demonstrated effect on implementation exists.
 
 The intended corpus is deliberately broad. It will combine election material with budgets, legislation, Hansard, committee reports, audits, regulator and court records, departmental progress reports, statistical releases, program dashboards, procurement records, official explanations, independent assessments, and competing claims. This lets the agent investigate not only whether a promise was met, but what changed, why delivery may have slipped, whether the stated reason is supported, and whether different sources contradict one another.
+
+The integrity slice adds public NACC and ANAO material. It includes an official bribery finding connected to contract bidding, an official misuse-of-office finding, a conflict-of-interest audit, and a NACC case where a perceived conflict was not substantiated as abuse of office. The last example is intentional: True Oath must be able to say that a claim was investigated and not proven. It should not call something “rigged” merely because a news report or political claim uses that language. The agent must preserve the source's status and only connect an integrity event to a promise when the evidence establishes that link.
 
 The intended Path One agent will connect to the True Oath Sanity Context MCP endpoint. It will retrieve the relevant promises and evidence, follow their source references, compare claims across documents, and answer questions such as:
 

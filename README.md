@@ -29,7 +29,7 @@ cd sanity && npm run dev
 cd web && npm run dev
 ```
 
-The current web slice is a Vercel-ready investigative ledger. It uses local presentation data while the Sanity-backed agent flow is being wired: search and filters narrow the files, selecting a row opens its case detail, and the integrity lens explains how findings and unresolved reporting are treated.
+The current web slice is a Vercel-ready investigative ledger. It uses the four tracked promise records as local presentation data while the Sanity-backed agent flow is being wired: search and filters narrow the files, selecting a row opens its case detail, charts summarize status and evidence depth, and the integrity lens explains how findings and unresolved reporting are treated.
 
 The first public-source import is now in the True Oath dataset: 15 public sources, 4 promises, 4 evidence records, 4 milestones, 4 outcome indicators, 4 independent assessments, 3 competing claims, 1 manifesto, 1 government record, and 4 integrity events. It was collected independently from Cyber Autopsy.
 

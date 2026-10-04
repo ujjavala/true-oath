@@ -42,7 +42,7 @@ npm install
 npm run dev
 ```
 
-Its first screen is an investigative ledger: readers can search and filter commitments, select a case file, inspect confidence and linked evidence counts, and jump to the integrity method. Lucide icons, responsive layouts, keyboard-friendly controls, status colors, subtle motion, and mobile overflow states are included in the interface.
+Its first screen is an investigative ledger: readers can search and filter the four promise files, select a case file, inspect confidence and linked evidence counts, and jump to the integrity method. The dashboard now includes a status-distribution chart, evidence-depth bars, and an average-confidence readout so the corpus can be scanned before a reader opens an individual file. Lucide icons, responsive layouts, keyboard-friendly controls, status colors, subtle motion, and mobile overflow states are included in the interface.
 
 The Sanity dataset contains the first independently collected Australia corpus: 15 public sources, 4 promises, 4 evidence records, 4 milestones, 4 outcome indicators, 4 independent assessments, 3 competing claims, 1 manifesto, 1 government record, and 4 integrity events. The `production` dataset is now public-read for judging and API inspection. Public reads do not grant anonymous editing or uploads.
 

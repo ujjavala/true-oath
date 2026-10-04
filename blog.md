@@ -44,7 +44,7 @@ npm run dev
 
 Its first screen is an investigative ledger: readers can search and filter commitments, select a case file, inspect confidence and linked evidence counts, and jump to the integrity method. Lucide icons, responsive layouts, keyboard-friendly controls, status colors, subtle motion, and mobile overflow states are included in the interface.
 
-The Sanity dataset contains the first independently collected Australia corpus: 15 public sources, 4 promises, 4 evidence records, 1 manifesto, 1 government record, and 4 integrity events. The `production` dataset is now public-read for judging and API inspection. Public reads do not grant anonymous editing or uploads.
+The Sanity dataset contains the first independently collected Australia corpus: 15 public sources, 4 promises, 4 evidence records, 4 milestones, 4 outcome indicators, 4 independent assessments, 3 competing claims, 1 manifesto, 1 government record, and 4 integrity events. The `production` dataset is now public-read for judging and API inspection. Public reads do not grant anonymous editing or uploads.
 
 ## Code
 
@@ -78,6 +78,8 @@ Sanity is the evidence layer for True Oath. The Studio schema separates the main
 - `assessment` records an independent verdict and its reasoning; and
 - `claim` records competing explanations or interpretations without silently treating them as verified facts.
 - `integrityEvent` records corruption and integrity signals separately from promise verdicts, including mechanism, evidence status, official-finding status, confidence, source, and whether a demonstrated effect on implementation exists.
+
+The current promise records are linked to milestones, outcome indicators, independent assessments, and competing claims. That means an agent can distinguish “a policy was announced”, “a measurable output changed”, “an assessor gave a verdict”, and “a government or public interpretation explains why” instead of collapsing those into one status field.
 
 The intended corpus is deliberately broad. It will combine election material with budgets, legislation, Hansard, committee reports, audits, regulator and court records, departmental progress reports, statistical releases, program dashboards, procurement records, official explanations, independent assessments, and competing claims. This lets the agent investigate not only whether a promise was met, but what changed, why delivery may have slipped, whether the stated reason is supported, and whether different sources contradict one another.
 
@@ -117,7 +119,7 @@ Public dataset inspection endpoint:
 
 https://wak4l160.api.sanity.io/v2025-08-15/data/query/production?query=count%28%2A%29
 
-The final submission still needs the True Oath read-only MCP endpoint configured with dataset source `wak4l160.production`, semantic embeddings enabled, and a GROQ filter limited to the accountability document types. The public dataset is available for inspection now; the Context endpoint, organization-level Context Viewer token, and final hosted agent session remain separate setup steps.
+The True Oath read-only MCP endpoint now exists at `https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context`. The endpoint is authenticated and currently points at the created `kbgnQdlEqXlP` Knowledge Base, but that Knowledge Base reports 0 entries because the organization's beta index quota is exhausted. The final agent run therefore still requires either rebuilding that Knowledge Base after quota is available or switching the endpoint source to the public `wak4l160.production` dataset with embeddings and the accountability GROQ filter.
 
 ## Agent Session
 

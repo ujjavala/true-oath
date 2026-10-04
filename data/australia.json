@@ -118,7 +118,10 @@
     "status": "Kept",
     "confidence": 0.98,
     "manifesto": {"_type": "reference", "_ref": "true-oath-manifesto-labor-2022"},
-    "evidence": [{"_type": "reference", "_ref": "true-oath-evidence-pbs-copayment"}]
+    "evidence": [{"_type": "reference", "_ref": "true-oath-evidence-pbs-copayment"}],
+    "milestones": [{"_type": "reference", "_ref": "true-oath-milestone-pbs-copayment"}],
+    "indicators": [{"_type": "reference", "_ref": "true-oath-indicator-pbs-copayment"}],
+    "assessments": [{"_type": "reference", "_ref": "true-oath-assessment-pbs-copayment"}]
   },
   {
     "_id": "true-oath-promise-60day-dispensing",
@@ -131,7 +134,10 @@
     "status": "Partially kept",
     "confidence": 0.94,
     "manifesto": {"_type": "reference", "_ref": "true-oath-manifesto-labor-2022"},
-    "evidence": [{"_type": "reference", "_ref": "true-oath-evidence-60day-dispensing"}]
+    "evidence": [{"_type": "reference", "_ref": "true-oath-evidence-60day-dispensing"}],
+    "milestones": [{"_type": "reference", "_ref": "true-oath-milestone-60day-dispensing"}],
+    "indicators": [{"_type": "reference", "_ref": "true-oath-indicator-60day-dispensing"}],
+    "assessments": [{"_type": "reference", "_ref": "true-oath-assessment-60day-dispensing"}]
   },
   {
     "_id": "true-oath-promise-housing-fund",
@@ -144,7 +150,10 @@
     "status": "In progress",
     "confidence": 0.87,
     "manifesto": {"_type": "reference", "_ref": "true-oath-manifesto-labor-2022"},
-    "evidence": [{"_type": "reference", "_ref": "true-oath-evidence-housing-fund"}]
+    "evidence": [{"_type": "reference", "_ref": "true-oath-evidence-housing-fund"}],
+    "milestones": [{"_type": "reference", "_ref": "true-oath-milestone-housing-fund"}],
+    "indicators": [{"_type": "reference", "_ref": "true-oath-indicator-housing-fund"}],
+    "assessments": [{"_type": "reference", "_ref": "true-oath-assessment-housing-fund"}]
   },
   {
     "_id": "true-oath-promise-rewiring-nation",
@@ -157,7 +166,10 @@
     "status": "In progress",
     "confidence": 0.86,
     "manifesto": {"_type": "reference", "_ref": "true-oath-manifesto-labor-2022"},
-    "evidence": [{"_type": "reference", "_ref": "true-oath-evidence-rewiring"}]
+    "evidence": [{"_type": "reference", "_ref": "true-oath-evidence-rewiring"}],
+    "milestones": [{"_type": "reference", "_ref": "true-oath-milestone-rewiring"}],
+    "indicators": [{"_type": "reference", "_ref": "true-oath-indicator-rewiring"}],
+    "assessments": [{"_type": "reference", "_ref": "true-oath-assessment-rewiring"}]
   },
   {
     "_id": "true-oath-evidence-pbs-copayment",
@@ -334,5 +346,167 @@
     "confidence": 0.82,
     "statusReason": "This record is deliberately marked unresolved because the imported source is a secondary news report. It is a lead for source review, not a finding that a contract was rigged or that a political promise was affected.",
     "source": {"_type": "reference", "_ref": "true-oath-source-abc-paladin-audit"}
+  },
+  {
+    "_id": "true-oath-milestone-pbs-copayment",
+    "_type": "milestone",
+    "title": "PBS co-payment change commenced",
+    "description": "The maximum general patient co-payment for most PBS medicines changed from $42.50 to $30.",
+    "date": "2023-01-01",
+    "status": "Delivered",
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-pbs-copayment"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-health-pbs-2023"}
+  },
+  {
+    "_id": "true-oath-indicator-pbs-copayment",
+    "_type": "indicator",
+    "title": "Maximum general PBS co-payment",
+    "definition": "Maximum price paid by a general, non-concession patient for most PBS medicines.",
+    "value": "$30",
+    "unit": "AUD per prescription",
+    "period": "From 1 January 2023",
+    "direction": "Improved",
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-pbs-copayment"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-health-pbs-2023"}
+  },
+  {
+    "_id": "true-oath-assessment-pbs-copayment",
+    "_type": "assessment",
+    "title": "Assessment: PBS co-payment reduction",
+    "verdict": "Kept",
+    "reasoning": "The official health source records the promised reduction and its commencement date. The baseline and observed value match the commitment.",
+    "assessor": "True Oath evidence review",
+    "publishedAt": "2023-03-07",
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-pbs-copayment"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-health-pbs-2023"}
+  },
+  {
+    "_id": "true-oath-milestone-60day-dispensing",
+    "_type": "milestone",
+    "title": "First stage of 60-day dispensing began",
+    "description": "Eligible patients could receive two months of selected medicine for one prescription co-payment.",
+    "date": "2023-09-01",
+    "status": "Started",
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-60day-dispensing"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-health-60day"}
+  },
+  {
+    "_id": "true-oath-indicator-60day-dispensing",
+    "_type": "indicator",
+    "title": "Medicines covered by first 60-day dispensing stage",
+    "definition": "Number of PBS medicines included in the first stage of the dispensing policy.",
+    "value": "92",
+    "unit": "PBS medicines",
+    "period": "From 1 September 2023",
+    "direction": "Improved",
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-60day-dispensing"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-health-60day"}
+  },
+  {
+    "_id": "true-oath-assessment-60day-dispensing",
+    "_type": "assessment",
+    "title": "Assessment: staged 60-day dispensing",
+    "verdict": "Partially kept",
+    "reasoning": "The first stage is documented and measurable, but the available source does not establish completion of the wider policy ambition.",
+    "assessor": "True Oath evidence review",
+    "publishedAt": "2023-09-01",
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-60day-dispensing"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-health-60day"}
+  },
+  {
+    "_id": "true-oath-milestone-housing-fund",
+    "_type": "milestone",
+    "title": "Housing Australia Future Fund included in budget",
+    "description": "The October 2022 budget set out the long-term funding mechanism for social and affordable housing.",
+    "date": "2022-10-25",
+    "status": "Funded",
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-housing-fund"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-budget-housing"}
+  },
+  {
+    "_id": "true-oath-indicator-housing-fund",
+    "_type": "indicator",
+    "title": "Housing Australia Future Fund delivery target",
+    "definition": "Planned social and affordable housing contribution described in the budget formulation.",
+    "value": "30,000 homes over five years",
+    "unit": "homes / five-year period",
+    "period": "Budget 2022-23",
+    "direction": "Not comparable",
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-housing-fund"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-budget-housing"}
+  },
+  {
+    "_id": "true-oath-assessment-housing-fund",
+    "_type": "assessment",
+    "title": "Assessment: Housing Australia Future Fund",
+    "verdict": "In progress",
+    "reasoning": "The budget confirms a funded policy measure, but the available record does not yet establish the full delivery outcome against the housing target.",
+    "assessor": "True Oath evidence review",
+    "publishedAt": "2022-10-25",
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-housing-fund"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-budget-housing"}
+  },
+  {
+    "_id": "true-oath-milestone-rewiring",
+    "_type": "milestone",
+    "title": "Rewiring the Nation agreement announced in NSW",
+    "description": "The Commonwealth and NSW announced an agreement to accelerate transmission and clean-energy infrastructure.",
+    "date": "2022-12-22",
+    "status": "Announced",
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-rewiring-nation"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-energy-rewiring"}
+  },
+  {
+    "_id": "true-oath-indicator-rewiring",
+    "_type": "indicator",
+    "title": "Rewiring the Nation NSW agreement value",
+    "definition": "Public funding described in the Commonwealth and NSW transmission agreement.",
+    "value": "$4.7 billion Commonwealth plus $3.1 billion NSW facility",
+    "unit": "AUD funding commitment",
+    "period": "Agreement announced December 2022",
+    "direction": "Improved",
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-rewiring-nation"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-energy-rewiring"}
+  },
+  {
+    "_id": "true-oath-assessment-rewiring",
+    "_type": "assessment",
+    "title": "Assessment: Rewiring the Nation",
+    "verdict": "In progress",
+    "reasoning": "The agreement and funding are documented, but the available source is an implementation milestone rather than proof of completed network outcomes.",
+    "assessor": "True Oath evidence review",
+    "publishedAt": "2022-12-22",
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-rewiring-nation"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-energy-rewiring"}
+  },
+  {
+    "_id": "true-oath-claim-60day-staged-policy",
+    "_type": "claim",
+    "statement": "The first stage of 60-day dispensing made selected chronic medicines cheaper for eligible patients.",
+    "claimant": "Australian Government Department of Health",
+    "claimType": "Government explanation",
+    "confidence": 0.94,
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-60day-dispensing"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-health-60day"}
+  },
+  {
+    "_id": "true-oath-claim-housing-outcome-open",
+    "_type": "claim",
+    "statement": "The budget measure establishes the funding mechanism, but the available source does not prove the final housing delivery outcome.",
+    "claimant": "True Oath evidence review",
+    "claimType": "Public data interpretation",
+    "confidence": 0.87,
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-housing-fund"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-budget-housing"}
+  },
+  {
+    "_id": "true-oath-claim-rewiring-implementation",
+    "_type": "claim",
+    "statement": "The NSW agreement is evidence of program implementation, not evidence that all promised transmission and renewable-energy outcomes are complete.",
+    "claimant": "True Oath evidence review",
+    "claimType": "Independent finding",
+    "confidence": 0.86,
+    "promise": {"_type": "reference", "_ref": "true-oath-promise-rewiring-nation"},
+    "source": {"_type": "reference", "_ref": "true-oath-source-energy-rewiring"}
   }
 ]

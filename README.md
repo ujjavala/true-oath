@@ -31,7 +31,7 @@ cd web && npm run dev
 
 The current web slice is a Vercel-ready investigative ledger. It uses local presentation data while the Sanity-backed agent flow is being wired: search and filters narrow the files, selecting a row opens its case detail, and the integrity lens explains how findings and unresolved reporting are treated.
 
-The first public-source import is now in the True Oath dataset: 15 public sources, 4 promises, 4 evidence records, 1 manifesto, 1 government record, and 4 integrity events. It was collected independently from Cyber Autopsy.
+The first public-source import is now in the True Oath dataset: 15 public sources, 4 promises, 4 evidence records, 4 milestones, 4 outcome indicators, 4 independent assessments, 3 competing claims, 1 manifesto, 1 government record, and 4 integrity events. It was collected independently from Cyber Autopsy.
 
 ## Evidence coverage
 
@@ -43,13 +43,21 @@ Integrity evidence is modelled separately from promise verdicts. `integrityEvent
 
 ## Context agent
 
-Create a True Oath MCP endpoint in Sanity Context with dataset source `wak4l160.production`, using the filter below. The organization token must remain server-side.
+The True Oath Context endpoint is:
+
+```text
+https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context
+```
+
+The organization token must remain server-side. The endpoint currently exposes the `kbgnQdlEqXlP` Knowledge Base, which is created but empty because the organization beta index quota is exhausted. To complete the live agent run, either rebuild that Knowledge Base after quota is available or update the endpoint source to the public `wak4l160.production` dataset.
+
+For a dataset-backed Context endpoint, use the filter below:
 
 ```text
 _type in ["source", "promise", "evidence", "manifesto", "government", "milestone", "indicator", "assessment", "claim", "integrityEvent"]
 ```
 
-Then set `TRUE_OATH_MCP_URL` and `SANITY_ORG_TOKEN` from `.env.example` and run:
+Set `TRUE_OATH_MCP_URL` and `SANITY_ORG_TOKEN` from `.env.example` and run:
 
 ```bash
 node agent/mcp-client.mjs

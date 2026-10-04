@@ -39,17 +39,32 @@ async function main() {
   if (tools.error) throw new Error(tools.error.message)
 
   const available = tools.result?.tools?.map((tool) => tool.name) || []
-  if (!available.includes('groq_query')) throw new Error(`Expected groq_query, received: ${available.join(', ')}`)
+  let result
 
-  const query = `*[_type in ["source", "promise", "evidence", "manifesto", "government", "milestone", "indicator", "assessment", "claim", "integrityEvent"]] | order(_type asc, title asc) {
-    _type, title, party, category, status, confidence, summary, finding,
-    mechanism, impact, officialFinding, statusReason,
-    publisher, url, publishedAt, observedAt,
-    "sourceTitle": source->title,
-    "sourceUrl": source->url,
-    "promiseTitle": relatedPromise->title
-  }`
-  const result = await call('tools/call', {name: 'groq_query', arguments: {query}})
+  if (available.includes('groq_query')) {
+    const query = `*[_type in ["source", "promise", "evidence", "manifesto", "government", "milestone", "indicator", "assessment", "claim", "integrityEvent"]] | order(_type asc, title asc) {
+      _type, title, party, category, status, confidence, summary, finding,
+      mechanism, impact, officialFinding, statusReason,
+      publisher, url, publishedAt, observedAt,
+      "sourceTitle": source->title,
+      "sourceUrl": source->url,
+      "promiseTitle": relatedPromise->title
+    }`
+    result = await call('tools/call', {name: 'groq_query', arguments: {query}})
+  } else if (available.includes('initial_context') && available.includes('knowledge_base_search')) {
+    const context = await call('tools/call', {name: 'initial_context', arguments: {}})
+    if (context.error) throw new Error(context.error.message)
+    const contextText = context.result?.content?.find((item) => item.type === 'text')?.text || ''
+    const knowledgeBase = contextText.match(/Knowledge base id: `([^`]+)`/)?.[1]
+    if (!knowledgeBase) throw new Error('MCP returned no Knowledge Base id')
+    if (/0 entries\b/.test(contextText)) throw new Error(`Knowledge Base ${knowledgeBase} is empty; build it or point the endpoint at the live production dataset before running the agent`)
+    result = await call('tools/call', {
+      name: 'knowledge_base_search',
+      arguments: {knowledgeBase, query: 'promise evidence government milestone assessment integrity', return: 'entries', limit: 10},
+    })
+  } else {
+    throw new Error(`Expected groq_query or Knowledge Base tools, received: ${available.join(', ')}`)
+  }
   if (result.error) throw new Error(result.error.message)
 
   console.log(JSON.stringify({

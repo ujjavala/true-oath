@@ -36,7 +36,7 @@ npm install
 npm run dev
 ```
 
-The current interface contains a small local demonstration set. The final demo will replace those records with Australia documents queried from the True Oath Sanity project through the agent.
+The Sanity dataset now contains the first independently collected Australia corpus: 9 official sources, 4 promises, 4 evidence records, 1 manifesto, and 1 government record. The public web experience is still being prepared for deployment.
 
 ## Code
 
@@ -84,7 +84,7 @@ Retrieval: Sanity Context MCP
 Output rule: preserve source links, dates, confidence, and unresolved conflicts
 ```
 
-The Knowledge Base and MCP endpoint will be created specifically for this project before the final submission. They must not reuse Cyber Autopsy's endpoint or dataset.
+The True Oath Knowledge Base has been created specifically for this project as `kbgnQdlEqXlP`. Its first build is waiting on the organization’s 150-document beta index quota, which is currently consumed by Cyber Autopsy. The Path One agent therefore uses the supported live-dataset GROQ Context mode for True Oath, with a narrow filter over the five accountability document types. It does not reuse Cyber Autopsy's dataset or content.
 
 ## Sanity Project Details
 
@@ -93,8 +93,9 @@ The Knowledge Base and MCP endpoint will be created specifically for this projec
 - Organization: `oqf9m6vy6`
 - Hosted Studio: https://true-oath.sanity.studio/
 - Studio app ID: `uk5zu82laqqn2uoecp2yikrq`
+- Knowledge Base public ID: `kbgnQdlEqXlP`
 
-The dataset is currently private while the source corpus is being assembled. The final submission will add the True Oath Context Knowledge Base and its read-only MCP endpoint here once the Australia documents have been imported and validated.
+The dataset is currently private while the source corpus is being reviewed. The final submission will include the True Oath read-only MCP endpoint configured with dataset source `wak4l160.production` and a GROQ filter limited to `source`, `promise`, `evidence`, `manifesto`, and `government` documents.
 
 ## Agent Session
 
@@ -106,7 +107,7 @@ The final submission will include a curated Codex transcript showing:
 4. a comparison of supporting and conflicting evidence; and
 5. a cautious answer that distinguishes fact, assessment, uncertainty, and missing data.
 
-The transcript will be curated into the final DEV post after the Knowledge Base and live agent query have been tested. It will be checked for API tokens, private URLs, and other secrets before being made public.
+The Knowledge Base build is quota-blocked, so the transcript will show the live-dataset Context MCP route instead. It will be checked for API tokens, private URLs, and other secrets before being made public.
 
 <!-- Add the public DEV Agent Session link here after the final read-only run is complete. -->
 

@@ -14,6 +14,7 @@ An Australia-first political accountability ledger. True Oath separates a campai
 - Organization: `oqf9m6vy6`
 - Hosted Studio: https://true-oath.sanity.studio/
 - Studio app ID: `uk5zu82laqqn2uoecp2yikrq`
+- Knowledge Base: `kbgnQdlEqXlP` (created; build currently waits for the organization's beta index quota)
 
 This is a separate Sanity project from Cyber Autopsy. Deployments, schemas, datasets, and dashboard entries belong to True Oath only.
 
@@ -27,6 +28,22 @@ cd web && npm run dev
 ```
 
 The current web slice uses a small local Australia dataset while the Sanity schema is being populated. The next ingestion step will add official manifestos, election commitments, budgets, legislation, parliamentary records, and outcome evidence as linked documents.
+
+The first public-source import is now in the True Oath dataset: 9 sources, 4 promises, 4 evidence records, 1 manifesto, and 1 government record. It was collected independently from Cyber Autopsy.
+
+## Context agent
+
+Create a True Oath MCP endpoint in Sanity Context with dataset source `wak4l160.production`, using the filter below. The organization token must remain server-side.
+
+```text
+_type in ["source", "promise", "evidence", "manifesto", "government"]
+```
+
+Then set `TRUE_OATH_MCP_URL` and `SANITY_ORG_TOKEN` from `.env.example` and run:
+
+```bash
+node agent/mcp-client.mjs
+```
 
 ## Checks
 

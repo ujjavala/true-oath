@@ -1,0 +1,202 @@
+[
+  {
+    "_id": "true-oath-source-aec-2022-results",
+    "_type": "source",
+    "title": "2022 Federal Election: House of Representatives final results",
+    "publisher": "Australian Electoral Commission",
+    "url": "https://results.aec.gov.au/27966/Website/HouseDefault-27966.htm",
+    "publishedAt": "2022-07-01",
+    "sourceType": "Dataset",
+    "notes": "Official final House of Representatives result. Labor won 77 seats; the Coalition won 58."
+  },
+  {
+    "_id": "true-oath-source-pbo-2022-report",
+    "_type": "source",
+    "title": "2022 Election commitments report",
+    "publisher": "Australian Parliamentary Budget Office",
+    "url": "https://www.pbo.gov.au/elections/2022-general-election/2022-election-commitments-report-ecr",
+    "publishedAt": "2022-07-14",
+    "sourceType": "Official report",
+    "notes": "The PBO report records the budget impact of major-party election commitments against the 2022 PEFO baseline."
+  },
+  {
+    "_id": "true-oath-source-pbo-2022-commitments",
+    "_type": "source",
+    "title": "2022 General Election: party commitment lists and costings",
+    "publisher": "Australian Parliamentary Budget Office",
+    "url": "https://www.pbo.gov.au/elections/2022-general-election",
+    "publishedAt": "2022-07-14",
+    "sourceType": "Manifesto",
+    "notes": "The PBO publishes party-provided commitment lists and related election commitment costings."
+  },
+  {
+    "_id": "true-oath-source-pbo-2022-labor",
+    "_type": "source",
+    "title": "2022 ECR: Australian Labor Party",
+    "publisher": "Australian Parliamentary Budget Office",
+    "url": "https://www.pbo.gov.au/elections/2022-general-election/2022-election-commitments-report-ecr/2022-ecr-australian-labor-party",
+    "publishedAt": "2022-07-14",
+    "sourceType": "Official report",
+    "notes": "PBO analysis of Labor commitments, including Cheaper Child Care, Housing Australia Future Fund and Rewiring the Nation."
+  },
+  {
+    "_id": "true-oath-source-health-pbs-2023",
+    "_type": "source",
+    "title": "Save more on Pharmaceutical Benefits Scheme medicines",
+    "publisher": "Australian Government Department of Health, Disability and Ageing",
+    "url": "https://www.health.gov.au/news/save-more-on-pharmaceutical-benefits-scheme-pbs-medicines",
+    "publishedAt": "2023-03-07",
+    "sourceType": "Official report",
+    "notes": "Records that from 1 January 2023 the maximum price of most PBS medicines for non-concession patients fell from $42.50 to $30."
+  },
+  {
+    "_id": "true-oath-source-health-60day",
+    "_type": "source",
+    "title": "Lower medicine costs for chronic health conditions",
+    "publisher": "Australian Government Department of Health, Disability and Ageing",
+    "url": "https://www.health.gov.au/news/lower-medicine-costs-for-chronic-health-conditions",
+    "publishedAt": "2023-06-23",
+    "sourceType": "Official report",
+    "notes": "Records the first stage of 60-day dispensing for 92 PBS medicines from 1 September 2023."
+  },
+  {
+    "_id": "true-oath-source-budget-housing",
+    "_type": "source",
+    "title": "2022-23 October Budget: Housing Australia Future Fund",
+    "publisher": "Australian Government Treasury",
+    "url": "https://archive.budget.gov.au/2022-23-october/bp2/download/bp2_2022-23.pdf",
+    "publishedAt": "2022-10-25",
+    "sourceType": "Budget",
+    "notes": "Budget paper describing the Housing Australia Future Fund and its planned contribution to social and affordable housing."
+  },
+  {
+    "_id": "true-oath-source-energy-rewiring",
+    "_type": "source",
+    "title": "Rewiring the Nation deal to fast-track clean energy jobs and security in NSW",
+    "publisher": "Australian Government Department of Climate Change, Energy, the Environment and Water",
+    "url": "https://www.energy.gov.au/news/rewiring-nation-deal-fast-track-clean-energy-jobs-and-security-nsw",
+    "publishedAt": "2022-12-22",
+    "sourceType": "Official report",
+    "notes": "Records a Commonwealth and NSW agreement involving $4.7 billion from the Commonwealth and $3.1 billion from the NSW Transmission Acceleration Facility."
+  },
+  {
+    "_id": "true-oath-source-pbo-148-budget",
+    "_type": "source",
+    "title": "Beyond the budget 2022-23: Fiscal outlook and scenarios",
+    "publisher": "Australian Parliamentary Budget Office",
+    "url": "https://www.pbo.gov.au/publications-and-data/publications/fiscal-projections-and-sustainability/beyond-budget-2022-23",
+    "publishedAt": "2023-05-01",
+    "sourceType": "Official report",
+    "notes": "PBO analysis states that 148 of Labor's 154 recorded commitments were explicitly reflected in the October 2022 budget measures, with modifications."
+  },
+  {
+    "_id": "true-oath-gov-albanese-first-term",
+    "_type": "government",
+    "name": " Albanese Government",
+    "jurisdiction": "Australia",
+    "partyOrCoalition": "Australian Labor Party",
+    "startDate": "2022-05-23"
+  },
+  {
+    "_id": "true-oath-manifesto-labor-2022",
+    "_type": "manifesto",
+    "title": "Australian Labor Party 2022 election commitments",
+    "party": "Australian Labor Party",
+    "electionDate": "2022-05-21",
+    "jurisdiction": "Australia",
+    "documentUrl": "https://www.pbo.gov.au/elections/2022-general-election",
+    "source": {"_type": "reference", "_ref": "true-oath-source-pbo-2022-commitments"}
+  },
+  {
+    "_id": "true-oath-promise-pbs-copayment",
+    "_type": "promise",
+    "title": "Reduce the maximum general PBS co-payment from $42.50 to $30",
+    "summary": "A 2022 election commitment to reduce the maximum general patient co-payment for PBS medicines from 1 January 2023.",
+    "party": "Australian Labor Party",
+    "election": "2022 federal election",
+    "category": "Cost of living",
+    "status": "Kept",
+    "confidence": 0.98,
+    "manifesto": {"_type": "reference", "_ref": "true-oath-manifesto-labor-2022"},
+    "evidence": [{"_type": "reference", "_ref": "true-oath-evidence-pbs-copayment"}]
+  },
+  {
+    "_id": "true-oath-promise-60day-dispensing",
+    "_type": "promise",
+    "title": "Expand 60-day dispensing for eligible medicines",
+    "summary": "A commitment to make selected medicines cheaper by allowing eligible patients to receive two months of medicine for one prescription co-payment.",
+    "party": "Australian Labor Party",
+    "election": "2022 federal election",
+    "category": "Health",
+    "status": "Partially kept",
+    "confidence": 0.94,
+    "manifesto": {"_type": "reference", "_ref": "true-oath-manifesto-labor-2022"},
+    "evidence": [{"_type": "reference", "_ref": "true-oath-evidence-60day-dispensing"}]
+  },
+  {
+    "_id": "true-oath-promise-housing-fund",
+    "_type": "promise",
+    "title": "Create the Housing Australia Future Fund",
+    "summary": "A commitment to establish a long-term funding mechanism for social and affordable housing, including 30,000 homes over five years in the budget formulation.",
+    "party": "Australian Labor Party",
+    "election": "2022 federal election",
+    "category": "Housing",
+    "status": "In progress",
+    "confidence": 0.87,
+    "manifesto": {"_type": "reference", "_ref": "true-oath-manifesto-labor-2022"},
+    "evidence": [{"_type": "reference", "_ref": "true-oath-evidence-housing-fund"}]
+  },
+  {
+    "_id": "true-oath-promise-rewiring-nation",
+    "_type": "promise",
+    "title": "Invest in Rewiring the Nation",
+    "summary": "A commitment to invest in transmission and renewable-energy infrastructure through a public financing vehicle and related agreements.",
+    "party": "Australian Labor Party",
+    "election": "2022 federal election",
+    "category": "Climate",
+    "status": "In progress",
+    "confidence": 0.86,
+    "manifesto": {"_type": "reference", "_ref": "true-oath-manifesto-labor-2022"},
+    "evidence": [{"_type": "reference", "_ref": "true-oath-evidence-rewiring"}]
+  },
+  {
+    "_id": "true-oath-evidence-pbs-copayment",
+    "_type": "evidence",
+    "title": "PBS general co-payment reduced on 1 January 2023",
+    "finding": "The Department of Health records that the maximum price of most PBS medicines for non-concession patients fell from $42.50 to $30 from 1 January 2023.",
+    "observedAt": "2023-03-07",
+    "effect": "Supports",
+    "source": {"_type": "reference", "_ref": "true-oath-source-health-pbs-2023"},
+    "relatedPromise": {"_type": "reference", "_ref": "true-oath-promise-pbs-copayment"}
+  },
+  {
+    "_id": "true-oath-evidence-60day-dispensing",
+    "_type": "evidence",
+    "title": "First stage of 60-day dispensing began in September 2023",
+    "finding": "The Department of Health records that eligible Australians could receive 92 PBS medicines at a lower cost under the first stage of 60-day dispensing from 1 September 2023. This supports implementation, but not necessarily completion of the full policy ambition.",
+    "observedAt": "2023-09-01",
+    "effect": "Partially supports",
+    "source": {"_type": "reference", "_ref": "true-oath-source-health-60day"},
+    "relatedPromise": {"_type": "reference", "_ref": "true-oath-promise-60day-dispensing"}
+  },
+  {
+    "_id": "true-oath-evidence-housing-fund",
+    "_type": "evidence",
+    "title": "Housing Australia Future Fund appears in the October 2022 budget",
+    "finding": "The October 2022 budget paper describes the Housing Australia Future Fund and a planned contribution toward social and affordable homes. This confirms a funded policy measure, while delivery outcomes require later housing data.",
+    "observedAt": "2022-10-25",
+    "effect": "Partially supports",
+    "source": {"_type": "reference", "_ref": "true-oath-source-budget-housing"},
+    "relatedPromise": {"_type": "reference", "_ref": "true-oath-promise-housing-fund"}
+  },
+  {
+    "_id": "true-oath-evidence-rewiring",
+    "_type": "evidence",
+    "title": "Commonwealth and NSW Rewiring the Nation agreement announced",
+    "finding": "The Energy Department records a December 2022 agreement involving $4.7 billion from the Commonwealth and $3.1 billion from the NSW Transmission Acceleration Facility. This is implementation evidence for the program, not proof that every promised network outcome has been delivered.",
+    "observedAt": "2022-12-22",
+    "effect": "Partially supports",
+    "source": {"_type": "reference", "_ref": "true-oath-source-energy-rewiring"},
+    "relatedPromise": {"_type": "reference", "_ref": "true-oath-promise-rewiring-nation"}
+  }
+]

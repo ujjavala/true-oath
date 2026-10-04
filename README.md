@@ -14,7 +14,7 @@ A political accountability ledger starting with Australia and designed to expand
 - Organization: `oqf9m6vy6`
 - Hosted Studio: https://true-oath.sanity.studio/
 - Studio app ID: `uk5zu82laqqn2uoecp2yikrq`
-- Knowledge Base: `kbgnQdlEqXlP` (built and ready; 19 sources, no open issues)
+- Knowledge Base: `kbgnQdlEqXlP` (last built snapshot; rebuild after the latest 23-source corpus sync)
 - Dataset embeddings: ready for `production`, projected over accountability text fields
 - Dataset visibility: `public` for read-only inspection; writes remain authorized
 - Vercel deployment: https://true-oath.vercel.app/
@@ -34,7 +34,13 @@ The current web slice is a Vercel-ready investigative ledger. It reads the promi
 
 The web app is deployed from the `web/` directory as the `true-oath` Vercel project. The public demo is available at https://true-oath.vercel.app/.
 
-The first public-source import is now in the True Oath dataset: 15 public sources, 4 promises, 4 evidence records, 4 milestones, 4 outcome indicators, 4 independent assessments, 3 competing claims, 1 manifesto, 1 government record, and 4 integrity events. It was collected independently from Cyber Autopsy.
+The public-source import is now in the True Oath dataset: 23 public sources, 8 promises, 8 evidence records, 8 milestones, 8 outcome indicators, 8 independent assessments, 7 competing claims, 1 manifesto, 1 government record, and 4 integrity events. It was collected independently from Cyber Autopsy. The added commitments cover cheaper child care, paid family and domestic violence leave, Medicare Urgent Care Clinics, and the National Anti-Corruption Commission.
+
+To sync the checked-in corpus to the production dataset, keep `SANITY_TOKEN` in `.env` and run:
+
+```bash
+node scripts/sync-sanity.mjs
+```
 
 ## Evidence coverage
 
@@ -52,7 +58,7 @@ The True Oath Context endpoint is:
 https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context
 ```
 
-The organization token must remain server-side. The endpoint exposes the `kbgnQdlEqXlP` Knowledge Base, which is now built and ready. Cyber Autopsy's separate Knowledge Base was reduced to a focused 46-source import so the shared index allocation could accommodate True Oath; its underlying dataset was not deleted.
+The organization token must remain server-side. The endpoint exposes the `kbgnQdlEqXlP` Knowledge Base. The underlying dataset now contains 23 sources and 8 promises; after importing new records, run a rebuild in Sanity Context so the hosted agent snapshot includes them. Cyber Autopsy's separate Knowledge Base was reduced to a focused 46-source import so the shared index allocation could accommodate True Oath; its underlying dataset was not deleted.
 
 For a dataset-backed Context endpoint, use the filter below:
 

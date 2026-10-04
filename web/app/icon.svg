@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>True Oath</title>
+  <rect width="64" height="64" rx="14" fill="#102b31"/>
+  <path d="M32 9 51 16v14c0 12-7.7 21.8-19 26C20.7 51.8 13 42 13 30V16l19-7Z" fill="#173940" stroke="#43b8aa" stroke-width="3"/>
+  <path d="M22 25h20M22 32h14M22 39h20" stroke="#f7f7f2" stroke-width="3" stroke-linecap="round"/>
+  <path d="m39 35 3 3 7-8" fill="none" stroke="#f0a24b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

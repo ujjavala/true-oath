@@ -15,7 +15,16 @@ const query = `{
     summary,
     "source": coalesce(manifesto->party, government->name, "Sanity record"),
     "evidenceCount": count(*[_type == "evidence" && relatedPromise._ref == ^._id]),
-    "reviewed": coalesce(assessments[0]->publishedAt, _updatedAt)
+    "reviewed": coalesce(assessments[0]->publishedAt, _updatedAt),
+    "evidence": *[_type == "evidence" && relatedPromise._ref == ^._id] {
+      title, finding, observedAt, effect,
+      "sourceTitle": source->title, "sourcePublisher": source->publisher, "sourceUrl": source->url
+    },
+    "milestones": *[_type == "milestone" && promise._ref == ^._id] {title, description, date, status},
+    "indicators": *[_type == "indicator" && promise._ref == ^._id] {title, definition, value, unit, period, direction},
+    "assessments": *[_type == "assessment" && promise._ref == ^._id] {title, verdict, reasoning, assessor, publishedAt},
+    "claims": *[_type == "claim" && promise._ref == ^._id] {statement, claimant, claimType, confidence},
+    "integrityEvents": *[_type == "integrityEvent" && relatedPromise._ref == ^._id] {title, summary, status, mechanism, impact, officialFinding}
   },
   "stats": {
     "source": count(*[_type == "source"]),

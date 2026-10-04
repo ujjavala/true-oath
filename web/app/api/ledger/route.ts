@@ -1,6 +1,9 @@
 import {NextResponse} from "next/server";
 
-const projectId = process.env.SANITY_PROJECT_ID ?? "wak4l160";
+// The organization ID is not a Content Lake project ID. Normalize the common
+// dashboard copy/paste mistake so the public UI still reaches True Oath data.
+const configuredProjectId = process.env.SANITY_PROJECT_ID ?? "wak4l160";
+const projectId = configuredProjectId === "oqf9m6vy6" ? "wak4l160" : configuredProjectId;
 const dataset = process.env.SANITY_DATASET ?? "production";
 const apiVersion = process.env.SANITY_API_VERSION ?? "2025-08-15";
 

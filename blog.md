@@ -95,7 +95,7 @@ The True Oath Knowledge Base has been created specifically for this project as `
 - Studio app ID: `uk5zu82laqqn2uoecp2yikrq`
 - Knowledge Base public ID: `kbgnQdlEqXlP`
 
-The dataset is currently private while the source corpus is being reviewed. The final submission will include the True Oath read-only MCP endpoint configured with dataset source `wak4l160.production` and a GROQ filter limited to `source`, `promise`, `evidence`, `manifesto`, and `government` documents.
+The dataset is currently private while the source corpus is being reviewed. The final submission will include the True Oath read-only MCP endpoint configured with dataset source `wak4l160.production`, semantic embeddings enabled, and a GROQ filter limited to `source`, `promise`, `evidence`, `manifesto`, and `government` documents.
 
 ## Agent Session
 

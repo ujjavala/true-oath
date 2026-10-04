@@ -36,9 +36,9 @@ https://true-oath.sanity.studio/
 
 The Next.js web app is deployed to Vercel from the `web/` directory:
 
-https://web-ujjavalas-projects.vercel.app/
+https://true-oath.vercel.app/
 
-The production deployment is `Ready`, but Vercel Deployment Protection currently requires a Vercel login. Before publishing the DEV post, disable that protection for this public, read-only demo so judges can open the URL without an account. During development, run it locally:
+The project is named `true-oath`, the clean `true-oath.vercel.app` domain is publicly reachable, and Vercel SSO deployment protection has been disabled for this read-only demo. During development, run it locally:
 
 ```bash
 cd web

@@ -52,7 +52,7 @@ The True Oath Context endpoint is:
 https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context
 ```
 
-The organization token must remain server-side. The endpoint currently exposes the `kbgnQdlEqXlP` Knowledge Base, which is created but empty because the organization beta index quota is exhausted. To complete the live agent run, either rebuild that Knowledge Base after quota is available or update the endpoint source to the public `wak4l160.production` dataset.
+The organization token must remain server-side. The endpoint currently exposes the `kbgnQdlEqXlP` Knowledge Base. A fresh build check on 5 October 2026 was rejected at the organization-wide plan limit of `169 of 150 indexed documents`; the separate per-Knowledge-Base source allowance shown by the CLI does not remove that shared limit. To complete the live agent run, either upgrade/free the shared index quota or update the endpoint source to the public `wak4l160.production` dataset.
 
 For a dataset-backed Context endpoint, use the filter below:
 

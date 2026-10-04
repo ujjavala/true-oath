@@ -213,7 +213,7 @@ Public dataset inspection endpoint:
 
 https://wak4l160.api.sanity.io/v2025-08-15/data/query/production?query=count%28%2A%29
 
-The True Oath read-only MCP endpoint now exists at `https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context`. The endpoint is authenticated and currently points at the created `kbgnQdlEqXlP` Knowledge Base, but that Knowledge Base reports 0 entries because the organization's beta index quota is exhausted. The final agent run therefore still requires either rebuilding that Knowledge Base after quota is available or switching the endpoint source to the public `wak4l160.production` dataset with embeddings and the accountability GROQ filter.
+The True Oath read-only MCP endpoint now exists at `https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context`. The endpoint is authenticated and currently points at the created `kbgnQdlEqXlP` Knowledge Base. I rechecked the build on 5 October 2026: Sanity accepts the source configuration, but the build still rejects the organization-wide plan limit at `169 of 150 indexed documents` because Cyber Autopsy consumes the shared beta quota. The Knowledge Base's separate source allowance is not the same quota. The final agent run therefore still requires either a plan/quota change or switching the endpoint source to the public `wak4l160.production` dataset with embeddings and the accountability GROQ filter.
 
 ## Conclusion and What Comes Next
 
@@ -235,7 +235,7 @@ The final submission still needs a curated Codex transcript showing:
 4. a comparison of supporting and conflicting evidence; and
 5. a cautious answer that distinguishes fact, assessment, uncertainty, and missing data.
 
-The Knowledge Base build is quota-blocked, so the transcript will show the live-dataset Context MCP route instead. It will be checked for API tokens, private URLs, and other secrets before being made public.
+The Knowledge Base build is still quota-blocked after a fresh CLI check, so the transcript will show the live-dataset Context MCP route instead. It will be checked for API tokens, private URLs, and other secrets before being made public.
 
 <!-- Add the public DEV Agent Session link here after the final read-only run is complete. -->
 

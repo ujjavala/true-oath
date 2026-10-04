@@ -46,9 +46,9 @@ npm install
 npm run dev
 ```
 
-Its first screen is an investigative ledger: readers can search and filter the four Sanity-backed promise files, select a case file, inspect confidence and linked evidence counts, and jump to the integrity method. The dashboard now includes a status-distribution chart, evidence-depth bars, an average-confidence readout, and a corpus inventory showing every Sanity document type. Lucide icons, responsive layouts, keyboard-friendly controls, status colors, subtle motion, and mobile overflow states are included in the interface.
+Its first screen is an investigative ledger: readers can search and filter the eight Sanity-backed promise files, select a case file, inspect confidence and linked evidence counts, and jump to the integrity method. The dashboard now includes a status-distribution chart, evidence-depth bars, an average-confidence readout, and a corpus inventory showing every Sanity document type. Lucide icons, responsive layouts, keyboard-friendly controls, status colors, subtle motion, and mobile overflow states are included in the interface.
 
-The Sanity dataset contains the first independently collected Australia corpus: 15 public sources, 4 promises, 4 evidence records, 4 milestones, 4 outcome indicators, 4 independent assessments, 3 competing claims, 1 manifesto, 1 government record, and 4 integrity events. The `production` dataset is now public-read for judging and API inspection. Public reads do not grant anonymous editing or uploads.
+The Sanity dataset contains the independently collected Australia corpus: 23 public sources, 8 promises, 8 evidence records, 8 milestones, 8 outcome indicators, 8 independent assessments, 7 competing claims, 1 manifesto, 1 government record, and 4 integrity events. The `production` dataset is public-read for judging and API inspection. Public reads do not grant anonymous editing or uploads.
 
 ## Code
 
@@ -110,7 +110,7 @@ defineType({
 })
 ```
 
-**Content Lake and dataset.** The structured records live in the separate True Oath project `wak4l160`, dataset `production`. The dataset is public-read so judges can inspect the records, but writes still require authorization. The current corpus has 57 documents: sources, promises, evidence, milestones, indicators, assessments, claims, integrity events, a manifesto, and a government record.
+**Content Lake and dataset.** The structured records live in the separate True Oath project `wak4l160`, dataset `production`. The dataset is public-read so judges can inspect the records, but writes still require authorization. The current corpus has 76 documents: 23 sources, 8 promises, 8 evidence records, 8 milestones, 8 indicators, 8 assessments, 7 claims, 4 integrity events, a manifesto, and a government record.
 
 I imported the public records as linked Sanity documents instead of flattening them into one JSON blob:
 
@@ -159,7 +159,7 @@ if (available.includes("groq_query")) {
 }
 ```
 
-The endpoint currently exposes the Knowledge Base tools `initial_context`, `knowledge_base_search`, and `knowledge_base_read`. The Knowledge Base exists as `kbgnQdlEqXlP`, but its build is blocked by the organization’s beta index quota and currently reports zero entries. The public dataset and embeddings are ready; the remaining setup is to rebuild the Knowledge Base when quota is available or switch the Context endpoint source to `wak4l160.production`.
+The endpoint currently exposes the Knowledge Base tools `initial_context`, `knowledge_base_search`, and `knowledge_base_read`. The Knowledge Base exists as `kbgnQdlEqXlP`. Its refresh has detected the newly synced Studio records and is rebuilding the hosted snapshot. The stricter competition budget is 150 combined documents; live Context usage is 41 True Oath source units plus 46 Cyber Autopsy source units, or 87 total. The organization CLI currently reports a higher technical limit of 5,000, but the project deliberately stays below the competition’s 150-document guidance.
 
 **Sanity CLI and deployment.** The Sanity CLI is used for schema builds, hosted Studio deployment, document import, dataset visibility checks, and embedding setup. The Studio is deployed at https://true-oath.sanity.studio/. The web experience is a separate Next.js app deployed at https://true-oath.vercel.app/.
 
@@ -171,7 +171,7 @@ This build does not use the Sanity App SDK, Content Agent, Agent Actions, Functi
 
 The hardest part was not storing documents; it was choosing boundaries that preserve uncertainty. A budget measure is not the same thing as a delivered outcome, and a government explanation is not automatically an independent finding. That is why the schema has separate milestones, indicators, assessments, claims, and integrity events.
 
-The Knowledge Base beta quota was another real constraint. The organization had already used more than the 150-document indexing allowance, so the True Oath Knowledge Base could be created but not populated. The endpoint still responds and authenticates, but an agent run against that Knowledge Base returns zero entries. This is why the project documents the live-dataset Context alternative instead of pretending that an empty Knowledge Base is a successful retrieval demo.
+The Knowledge Base beta quota was another real constraint. Cyber Autopsy initially consumed the shared indexing budget, so we reduced it to a focused 46-source import before expanding True Oath. The two projects now use 87 combined source units, leaving room under the 150-document competition guidance. This keeps both Knowledge Bases available without deleting either underlying Sanity dataset.
 
 There was also a tooling mismatch to handle. The first agent draft expected a `groq_query` tool, but the configured Knowledge Base endpoint exposed `initial_context`, `knowledge_base_search`, and `knowledge_base_read`. The client now detects the available tool contract instead of assuming one response shape. Finally, Context authentication is organization-scoped, while ordinary Content API tokens are project-scoped; keeping those credentials separate is important for both security and a working MCP connection.
 
@@ -197,7 +197,7 @@ Retrieval: Sanity Context MCP
 Output rule: preserve source links, dates, confidence, and unresolved conflicts
 ```
 
-The True Oath Knowledge Base was created specifically for this project as `kbgnQdlEqXlP`. After reducing the separate Cyber Autopsy Knowledge Base to a focused 46-source import, the True Oath build completed successfully with 19 sources and no open issues. The Context endpoint now returns navigable Knowledge Base entries, and the local agent has retrieved source-linked promise, milestone, indicator, assessment, and outcome content. It does not reuse Cyber Autopsy's dataset or content.
+The True Oath Knowledge Base was created specifically for this project as `kbgnQdlEqXlP`. After reducing the separate Cyber Autopsy Knowledge Base to a focused 46-source import, True Oath’s refresh detected 22 added and 4 changed source units, taking its indexed usage to 41. The Context endpoint continues to serve the previous ready snapshot while the refresh completes; the public web UI reads the live Studio dataset directly through Sanity’s Content API. It does not reuse Cyber Autopsy's dataset or content.
 
 ## Sanity Project Details
 
@@ -213,7 +213,7 @@ Public dataset inspection endpoint:
 
 https://wak4l160.api.sanity.io/v2025-08-15/data/query/production?query=count%28%2A%29
 
-The True Oath read-only MCP endpoint now exists at `https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context`. It points at `kbgnQdlEqXlP`, which is now built and ready. The agent connects with the MCP Knowledge Base tools, searches the accountability content, and retrieves source-linked entries. The organization had a shared index limit while Cyber Autopsy occupied the full allocation, so Cyber Autopsy was reduced to a focused 46-source import to free capacity without deleting its underlying dataset.
+The True Oath read-only MCP endpoint now exists at `https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context`. It points at `kbgnQdlEqXlP`, and the refresh is rebuilding it from the current Studio dataset. The agent connects with the MCP Knowledge Base tools, searches the accountability content, and retrieves source-linked entries. The organization had a shared index limit while Cyber Autopsy occupied the full allocation, so Cyber Autopsy was reduced to a focused 46-source import to free capacity without deleting its underlying dataset.
 
 ## Conclusion and What Comes Next
 

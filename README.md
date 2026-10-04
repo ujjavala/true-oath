@@ -58,7 +58,7 @@ The True Oath Context endpoint is:
 https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context
 ```
 
-The organization token must remain server-side. The endpoint exposes the `kbgnQdlEqXlP` Knowledge Base. The underlying dataset now contains 23 sources and 8 promises; after importing new records, run a rebuild in Sanity Context so the hosted agent snapshot includes them. Cyber Autopsy's separate Knowledge Base was reduced to a focused 46-source import so the shared index allocation could accommodate True Oath; its underlying dataset was not deleted.
+The organization token must remain server-side. The endpoint exposes the `kbgnQdlEqXlP` Knowledge Base. The underlying dataset now contains 23 sources and 8 promises; the current refresh has detected the new records. The combined Context source usage is 41 for True Oath plus 46 for Cyber Autopsy = 87, below the stricter 150-document competition budget. Cyber Autopsy's separate Knowledge Base was reduced to a focused 46-source import so the shared index allocation could accommodate True Oath; its underlying dataset was not deleted.
 
 For a dataset-backed Context endpoint, use the filter below:
 

@@ -151,4 +151,45 @@ export const schemaTypes = [
     ],
     preview: {select: {title: 'title', subtitle: 'status'}},
   }),
+  defineType({
+    name: 'reviewTask', title: 'Review task', type: 'document',
+    fields: [
+      defineField({name: 'title', title: 'Task', type: 'string', validation: (rule) => rule.required()}),
+      defineField({name: 'kind', title: 'Review type', type: 'string', options: {list: [
+        {title: 'Missing source', value: 'missing-source'},
+        {title: 'Missing evidence', value: 'missing-evidence'},
+        {title: 'Broken reference', value: 'broken-reference'},
+        {title: 'Stale source', value: 'stale-source'},
+        {title: 'Integrity review', value: 'integrity-review'},
+      ]}, validation: (rule) => rule.required()}),
+      defineField({name: 'severity', title: 'Severity', type: 'string', options: {list: [
+        {title: 'Critical', value: 'critical'},
+        {title: 'Warning', value: 'warning'},
+        {title: 'Info', value: 'info'},
+      ]}, initialValue: 'warning', validation: (rule) => rule.required()}),
+      defineField({name: 'status', title: 'Status', type: 'string', options: {list: [
+        {title: 'Open', value: 'open'},
+        {title: 'In review', value: 'in-review'},
+        {title: 'Resolved', value: 'resolved'},
+        {title: 'Dismissed', value: 'dismissed'},
+      ]}, initialValue: 'open', validation: (rule) => rule.required()}),
+      defineField({name: 'summary', title: 'Why this needs review', type: 'text', rows: 4, validation: (rule) => rule.required()}),
+      defineField({name: 'suggestedAction', title: 'Suggested action', type: 'text', rows: 3}),
+      defineField({name: 'document', title: 'Document under review', type: 'reference', to: [
+        {type: 'government'}, {type: 'manifesto'}, {type: 'promise'}, {type: 'source'},
+        {type: 'evidence'}, {type: 'milestone'}, {type: 'indicator'}, {type: 'assessment'},
+        {type: 'claim'}, {type: 'integrityEvent'},
+      ]}),
+      defineField({name: 'relatedDocuments', title: 'Related documents', type: 'array', of: [{type: 'reference', to: [
+        {type: 'government'}, {type: 'manifesto'}, {type: 'promise'}, {type: 'source'},
+        {type: 'evidence'}, {type: 'milestone'}, {type: 'indicator'}, {type: 'assessment'},
+        {type: 'claim'}, {type: 'integrityEvent'},
+      ]}]}),
+      defineField({name: 'fingerprint', type: 'string', readOnly: true, validation: (rule) => rule.required()}),
+      defineField({name: 'detectedBy', title: 'Detected by', type: 'string', options: {list: ['Sanity Function', 'Manual audit', 'Agent Action']}, initialValue: 'Sanity Function'}),
+      defineField({name: 'detectedAt', title: 'Detected at', type: 'datetime', readOnly: true}),
+      defineField({name: 'reviewerNotes', title: 'Reviewer notes', type: 'text', rows: 4}),
+    ],
+    preview: {select: {title: 'title', subtitle: 'severity'}},
+  }),
 ]

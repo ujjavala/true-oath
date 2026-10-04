@@ -125,6 +125,16 @@ https://wak4l160.api.sanity.io/v2025-08-15/data/query/production?query=count%28%
 
 The True Oath read-only MCP endpoint now exists at `https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context`. The endpoint is authenticated and currently points at the created `kbgnQdlEqXlP` Knowledge Base, but that Knowledge Base reports 0 entries because the organization's beta index quota is exhausted. The final agent run therefore still requires either rebuilding that Knowledge Base after quota is available or switching the endpoint source to the public `wak4l160.production` dataset with embeddings and the accountability GROQ filter.
 
+## Conclusion and What Comes Next
+
+True Oath starts with a small Australia corpus, but the underlying model is meant to travel. The next step is to add more federal elections, then extend the same source-linked structure to state governments and other countries where reliable public records are available. Each new jurisdiction would bring its own election documents, budget conventions, laws, agencies, statistical releases, and standards for official findings.
+
+Future versions could add time-series indicators, parliamentary voting histories, procurement and grant data, automatic reminders when a promised milestone is due, and comparison views that show how different sources describe the same event. A richer agent could also explain why two claims conflict, identify the missing document that would resolve an uncertainty, and carry a human reviewer’s resolution forward as a durable editorial decision in Sanity.
+
+The hard problems are as important as the features. A promise can be vague, a target can change, an outcome can be affected by events outside a government’s control, and a media report can flatten a complicated audit into a dramatic headline. Sources can disagree without one being obviously false. That is why True Oath keeps confidence, provenance, dates, status reasons, and “no finding” cases visible instead of forcing every record into a binary score. The current Knowledge Base indexing quota and the work required to curate a public MCP session are practical constraints too.
+
+The goal is not to replace political judgment with an automated verdict. It is to make judgment better informed, easier to inspect, and easier to revise when the evidence changes. If Sanity can keep the content structured and the agent can keep its claims tied to that structure, voters get something more useful than another feed of opinions: a living record they can question.
+
 ## Agent Session
 
 The final submission still needs a curated Codex transcript showing:

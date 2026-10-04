@@ -85,6 +85,96 @@ Sanity is the evidence layer for True Oath. The Studio schema separates the main
 
 The current promise records are linked to milestones, outcome indicators, independent assessments, and competing claims. That means an agent can distinguish “a policy was announced”, “a measurable output changed”, “an assessor gave a verdict”, and “a government or public interpretation explains why” instead of collapsing those into one status field.
 
+### Sanity Services Used
+
+**Sanity Studio and schema.** I used a hosted Sanity Studio as the editorial surface for the project. The schema is the first important design decision: it keeps a campaign promise separate from the source that announced it, the evidence that tests it, the milestone that records implementation, the indicator that measures an outcome, and the assessment that explains a verdict. The model also has `claim` and `integrityEvent` documents so competing explanations and corruption-related records are not silently merged into a promise score.
+
+The core promise model is defined in `sanity/schemaTypes/index.ts`:
+
+```ts
+defineType({
+  name: "promise",
+  type: "document",
+  fields: [
+    defineField({name: "title", type: "string"}),
+    defineField({name: "status", type: "string"}),
+    defineField({name: "baseline", type: "string"}),
+    defineField({name: "target", type: "string"}),
+    defineField({name: "milestones", type: "array", of: [
+      {type: "reference", to: [{type: "milestone"}]},
+    ]}),
+    defineField({name: "indicators", type: "array", of: [
+      {type: "reference", to: [{type: "indicator"}]},
+    ]}),
+  ],
+})
+```
+
+**Content Lake and dataset.** The structured records live in the separate True Oath project `wak4l160`, dataset `production`. The dataset is public-read so judges can inspect the records, but writes still require authorization. The current corpus has 57 documents: sources, promises, evidence, milestones, indicators, assessments, claims, integrity events, a manifesto, and a government record.
+
+I imported the public records as linked Sanity documents instead of flattening them into one JSON blob:
+
+```bash
+npx sanity documents create data/australia.json \
+  --project-id wak4l160 \
+  --dataset production \
+  --replace
+```
+
+That makes relationships queryable. For example, an assessment can point to a promise and its source, while an indicator can preserve the measurement period and unit independently from the political language that motivated it.
+
+**Embeddings.** Dataset embeddings are enabled for the accountability text fields. This is intended to support conceptual retrieval when a question uses different language from the source, while the structured fields and GROQ-style filtering preserve exact relationships and status values.
+
+**Sanity Context and MCP.** The project has a Context endpoint at:
+
+```text
+https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context
+```
+
+The agent client in `agent/mcp-client.mjs` speaks JSON-RPC over MCP. It initializes a session, lists the tools, then supports both the GROQ-style route and the Knowledge Base route:
+
+```js
+const tools = await call("tools/list")
+
+if (available.includes("groq_query")) {
+  result = await call("tools/call", {
+    name: "groq_query",
+    arguments: {query: accountabilityQuery},
+  })
+} else {
+  const context = await call("tools/call", {
+    name: "initial_context",
+    arguments: {},
+  })
+  // Extract the Knowledge Base id, then search its entries.
+  result = await call("tools/call", {
+    name: "knowledge_base_search",
+    arguments: {
+      knowledgeBase,
+      query: "promise evidence government milestone assessment integrity",
+      return: "entries",
+      limit: 10,
+    },
+  })
+}
+```
+
+The endpoint currently exposes the Knowledge Base tools `initial_context`, `knowledge_base_search`, and `knowledge_base_read`. The Knowledge Base exists as `kbgnQdlEqXlP`, but its build is blocked by the organization’s beta index quota and currently reports zero entries. The public dataset and embeddings are ready; the remaining setup is to rebuild the Knowledge Base when quota is available or switch the Context endpoint source to `wak4l160.production`.
+
+**Sanity CLI and deployment.** The Sanity CLI is used for schema builds, hosted Studio deployment, document import, dataset visibility checks, and embedding setup. The Studio is deployed at https://true-oath.sanity.studio/. The web experience is a separate Next.js app deployed at https://true-oath.vercel.app/.
+
+### Sanity Capabilities Not Claimed
+
+This build does not use the Sanity App SDK, Content Agent, Agent Actions, Functions, Workflows, or a custom Studio plugin. The agent is a small local Node.js MCP client, while Sanity provides the structured content, hosted Studio, embeddings, and Context retrieval layer. Keeping that boundary explicit makes it clear which behavior comes from Sanity and which behavior belongs to the application code.
+
+### Challenges With Sanity
+
+The hardest part was not storing documents; it was choosing boundaries that preserve uncertainty. A budget measure is not the same thing as a delivered outcome, and a government explanation is not automatically an independent finding. That is why the schema has separate milestones, indicators, assessments, claims, and integrity events.
+
+The Knowledge Base beta quota was another real constraint. The organization had already used more than the 150-document indexing allowance, so the True Oath Knowledge Base could be created but not populated. The endpoint still responds and authenticates, but an agent run against that Knowledge Base returns zero entries. This is why the project documents the live-dataset Context alternative instead of pretending that an empty Knowledge Base is a successful retrieval demo.
+
+There was also a tooling mismatch to handle. The first agent draft expected a `groq_query` tool, but the configured Knowledge Base endpoint exposed `initial_context`, `knowledge_base_search`, and `knowledge_base_read`. The client now detects the available tool contract instead of assuming one response shape. Finally, Context authentication is organization-scoped, while ordinary Content API tokens are project-scoped; keeping those credentials separate is important for both security and a working MCP connection.
+
 The intended corpus is deliberately broad. It will combine election material with budgets, legislation, Hansard, committee reports, audits, regulator and court records, departmental progress reports, statistical releases, program dashboards, procurement records, official explanations, independent assessments, and competing claims. This lets the agent investigate not only whether a promise was met, but what changed, why delivery may have slipped, whether the stated reason is supported, and whether different sources contradict one another.
 
 The integrity slice adds public NACC and ANAO material. It includes an official bribery finding connected to contract bidding, an official misuse-of-office finding, a conflict-of-interest audit, and a NACC case where a perceived conflict was not substantiated as abuse of office. The last example is intentional: True Oath must be able to say that a claim was investigated and not proven. It should not call something “rigged” merely because a news report or political claim uses that language. The agent must preserve the source's status and only connect an integrity event to a promise when the evidence establishes that link.

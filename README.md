@@ -12,6 +12,10 @@ An Australia-first political accountability ledger. True Oath separates a campai
 - Project ID: `wak4l160`
 - Dataset: `production`
 - Organization: `oqf9m6vy6`
+- Hosted Studio: https://true-oath.sanity.studio/
+- Studio app ID: `uk5zu82laqqn2uoecp2yikrq`
+
+This is a separate Sanity project from Cyber Autopsy. Deployments, schemas, datasets, and dashboard entries belong to True Oath only.
 
 The project is private by default. Keep API tokens in local environment files only.
 

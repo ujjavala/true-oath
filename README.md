@@ -1,6 +1,6 @@
 # True Oath
 
-An Australia-first political accountability ledger. True Oath separates a campaign promise from the evidence used to assess it, preserving sources, dates, confidence, and unresolved questions.
+A political accountability ledger starting with Australia and designed to expand to other countries. True Oath separates a campaign promise from the evidence used to assess it, preserving sources, dates, confidence, and unresolved questions.
 
 ## Project layout
 
@@ -16,6 +16,7 @@ An Australia-first political accountability ledger. True Oath separates a campai
 - Studio app ID: `uk5zu82laqqn2uoecp2yikrq`
 - Knowledge Base: `kbgnQdlEqXlP` (created; build currently waits for the organization's beta index quota)
 - Dataset embeddings: ready for `production`, projected over accountability text fields
+- Dataset visibility: `public` for read-only inspection; writes remain authorized
 
 This is a separate Sanity project from Cyber Autopsy. Deployments, schemas, datasets, and dashboard entries belong to True Oath only.
 
@@ -28,7 +29,7 @@ cd sanity && npm run dev
 cd web && npm run dev
 ```
 
-The current web slice uses a small local Australia dataset while the Sanity schema is being populated. The next ingestion step will add official manifestos, election commitments, budgets, legislation, parliamentary records, and outcome evidence as linked documents.
+The current web slice is a Vercel-ready investigative ledger. It uses local presentation data while the Sanity-backed agent flow is being wired: search and filters narrow the files, selecting a row opens its case detail, and the integrity lens explains how findings and unresolved reporting are treated.
 
 The first public-source import is now in the True Oath dataset: 15 public sources, 4 promises, 4 evidence records, 1 manifesto, 1 government record, and 4 integrity events. It was collected independently from Cyber Autopsy.
 

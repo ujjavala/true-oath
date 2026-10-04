@@ -4,7 +4,7 @@
 
 ## What I Built
 
-True Oath is an Australia-first political accountability ledger. It is designed to answer a question that ordinary keyword search cannot answer reliably:
+True Oath is a political accountability ledger starting with Australia and designed to expand to other countries. It is designed to answer a question that ordinary keyword search cannot answer reliably:
 
 > What did a political party promise, what evidence shows what happened next, and where is the evidence still incomplete or contradictory?
 
@@ -22,13 +22,19 @@ The first jurisdiction is Australia. The initial evidence plan combines:
 
 The interface presents each promise with a status such as `Kept`, `Partially kept`, `In progress`, `Not started`, `Broken`, `Reversed`, or `Unverifiable`. The system is intentionally conservative: an absent search result is not treated as proof that a promise was broken.
 
+### Why I Built It
+
+Election season is arriving in one country after another, and the question many voters eventually ask is simple: what actually happened? Campaign language is memorable, but the details are scattered across budget papers, legislation, departmental updates, audits, statistics, court records, and later explanations. It is easy to remember a promise and much harder to audit it fairly.
+
+True Oath is my attempt to make that audit navigable. The point is not to manufacture a score for every political claim. It is to preserve the promise, follow the evidence, show contradictions, and leave uncertainty visible when the record is incomplete. Can Sanity help us keep our sanity? That is the experiment, with the pun fully intended.
+
 ## Demo
 
 The True Oath Sanity Studio is deployed at:
 
 https://true-oath.sanity.studio/
 
-The public web experience is currently being prepared for deployment. During development, run it locally:
+The public web experience is Vercel-ready and is being prepared for deployment. During development, run it locally:
 
 ```bash
 cd web
@@ -36,7 +42,9 @@ npm install
 npm run dev
 ```
 
-The Sanity dataset now contains the first independently collected Australia corpus: 15 public sources, 4 promises, 4 evidence records, 1 manifesto, 1 government record, and 4 integrity events. The public web experience is still being prepared for deployment.
+The public web experience is Vercel-ready and is being prepared for deployment. Its first screen is an investigative ledger: readers can search and filter commitments, select a case file, inspect confidence and linked evidence counts, and jump to the integrity method. Lucide icons, responsive layouts, keyboard-friendly controls, status colors, subtle motion, and mobile overflow states are included in the interface.
+
+The Sanity dataset contains the first independently collected Australia corpus: 15 public sources, 4 promises, 4 evidence records, 1 manifesto, 1 government record, and 4 integrity events. The `production` dataset is now public-read for judging and API inspection. Public reads do not grant anonymous editing or uploads.
 
 ## Code
 
@@ -93,18 +101,23 @@ Retrieval: Sanity Context MCP
 Output rule: preserve source links, dates, confidence, and unresolved conflicts
 ```
 
-The True Oath Knowledge Base has been created specifically for this project as `kbgnQdlEqXlP`. Its first build is waiting on the organization’s 150-document beta index quota, which is currently consumed by Cyber Autopsy. The Path One agent therefore uses the supported live-dataset GROQ Context mode for True Oath, with a narrow filter over the five accountability document types. It does not reuse Cyber Autopsy's dataset or content.
+The True Oath Knowledge Base has been created specifically for this project as `kbgnQdlEqXlP`. Its first build is waiting on the organization's 150-document beta index quota, which is currently consumed by Cyber Autopsy. The Path One agent therefore uses the supported live-dataset GROQ Context mode for True Oath, with a narrow filter over the five accountability document types. It does not reuse Cyber Autopsy's dataset or content.
 
 ## Sanity Project Details
 
 - Project ID: `wak4l160`
 - Dataset: `production`
+- Dataset visibility: `public` (read-only to unauthenticated API clients; writes still require authorization)
 - Organization: `oqf9m6vy6`
 - Hosted Studio: https://true-oath.sanity.studio/
 - Studio app ID: `uk5zu82laqqn2uoecp2yikrq`
 - Knowledge Base public ID: `kbgnQdlEqXlP`
 
-The dataset is currently private while the source corpus is being reviewed. The final submission will include the True Oath read-only MCP endpoint configured with dataset source `wak4l160.production`, semantic embeddings enabled, and a GROQ filter limited to `source`, `promise`, `evidence`, `manifesto`, and `government` documents.
+Public dataset inspection endpoint:
+
+https://wak4l160.api.sanity.io/v2025-08-15/data/query/production?query=count%28%2A%29
+
+The final submission will include the True Oath read-only MCP endpoint configured with dataset source `wak4l160.production`, semantic embeddings enabled, and a GROQ filter limited to the accountability document types. The public dataset is available for inspection now; the Context endpoint and final hosted agent session remain separate setup steps.
 
 ## Agent Session
 

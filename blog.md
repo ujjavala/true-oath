@@ -34,7 +34,11 @@ The True Oath Sanity Studio is deployed at:
 
 https://true-oath.sanity.studio/
 
-The public web experience is Vercel-ready and is being prepared for deployment. The final Vercel URL is still pending. During development, run it locally:
+The Next.js web app is deployed to Vercel from the `web/` directory:
+
+https://web-ujjavalas-projects.vercel.app/
+
+The production deployment is `Ready`, but Vercel Deployment Protection currently requires a Vercel login. Before publishing the DEV post, disable that protection for this public, read-only demo so judges can open the URL without an account. During development, run it locally:
 
 ```bash
 cd web

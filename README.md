@@ -17,6 +17,7 @@ A political accountability ledger starting with Australia and designed to expand
 - Knowledge Base: `kbgnQdlEqXlP` (created; build currently waits for the organization's beta index quota)
 - Dataset embeddings: ready for `production`, projected over accountability text fields
 - Dataset visibility: `public` for read-only inspection; writes remain authorized
+- Vercel deployment: https://web-ujjavalas-projects.vercel.app/ (currently behind Vercel Deployment Protection)
 
 This is a separate Sanity project from Cyber Autopsy. Deployments, schemas, datasets, and dashboard entries belong to True Oath only.
 
@@ -30,6 +31,8 @@ cd web && npm run dev
 ```
 
 The current web slice is a Vercel-ready investigative ledger. It uses the four tracked promise records as local presentation data while the Sanity-backed agent flow is being wired: search and filters narrow the files, selecting a row opens its case detail, charts summarize status and evidence depth, and the integrity lens explains how findings and unresolved reporting are treated.
+
+The web app is deployed from the `web/` directory. The current production deployment is ready, but its Vercel Deployment Protection must be disabled before sharing it as a public competition demo.
 
 The first public-source import is now in the True Oath dataset: 15 public sources, 4 promises, 4 evidence records, 4 milestones, 4 outcome indicators, 4 independent assessments, 3 competing claims, 1 manifesto, 1 government record, and 4 integrity events. It was collected independently from Cyber Autopsy.
 

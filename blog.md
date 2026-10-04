@@ -34,7 +34,7 @@ The True Oath Sanity Studio is deployed at:
 
 https://true-oath.sanity.studio/
 
-The public web experience is Vercel-ready and is being prepared for deployment. During development, run it locally:
+The public web experience is Vercel-ready and is being prepared for deployment. The final Vercel URL is still pending. During development, run it locally:
 
 ```bash
 cd web
@@ -42,7 +42,7 @@ npm install
 npm run dev
 ```
 
-The public web experience is Vercel-ready and is being prepared for deployment. Its first screen is an investigative ledger: readers can search and filter commitments, select a case file, inspect confidence and linked evidence counts, and jump to the integrity method. Lucide icons, responsive layouts, keyboard-friendly controls, status colors, subtle motion, and mobile overflow states are included in the interface.
+Its first screen is an investigative ledger: readers can search and filter commitments, select a case file, inspect confidence and linked evidence counts, and jump to the integrity method. Lucide icons, responsive layouts, keyboard-friendly controls, status colors, subtle motion, and mobile overflow states are included in the interface.
 
 The Sanity dataset contains the first independently collected Australia corpus: 15 public sources, 4 promises, 4 evidence records, 1 manifesto, 1 government record, and 4 integrity events. The `production` dataset is now public-read for judging and API inspection. Public reads do not grant anonymous editing or uploads.
 
@@ -117,11 +117,11 @@ Public dataset inspection endpoint:
 
 https://wak4l160.api.sanity.io/v2025-08-15/data/query/production?query=count%28%2A%29
 
-The final submission will include the True Oath read-only MCP endpoint configured with dataset source `wak4l160.production`, semantic embeddings enabled, and a GROQ filter limited to the accountability document types. The public dataset is available for inspection now; the Context endpoint and final hosted agent session remain separate setup steps.
+The final submission still needs the True Oath read-only MCP endpoint configured with dataset source `wak4l160.production`, semantic embeddings enabled, and a GROQ filter limited to the accountability document types. The public dataset is available for inspection now; the Context endpoint, organization-level Context Viewer token, and final hosted agent session remain separate setup steps.
 
 ## Agent Session
 
-The final submission will include a curated Codex transcript showing:
+The final submission still needs a curated Codex transcript showing:
 
 1. the agent receiving an Australia accountability question;
 2. the agent querying the True Oath Context MCP endpoint;

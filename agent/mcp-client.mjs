@@ -41,8 +41,9 @@ async function main() {
   const available = tools.result?.tools?.map((tool) => tool.name) || []
   if (!available.includes('groq_query')) throw new Error(`Expected groq_query, received: ${available.join(', ')}`)
 
-  const query = `*[_type in ["source", "promise", "evidence", "manifesto", "government"]] | order(_type asc, title asc) {
+  const query = `*[_type in ["source", "promise", "evidence", "manifesto", "government", "milestone", "indicator", "assessment", "claim", "integrityEvent"]] | order(_type asc, title asc) {
     _type, title, party, category, status, confidence, summary, finding,
+    mechanism, impact, officialFinding, statusReason,
     publisher, url, publishedAt, observedAt,
     "sourceTitle": source->title,
     "sourceUrl": source->url,

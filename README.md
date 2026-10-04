@@ -14,7 +14,7 @@ A political accountability ledger starting with Australia and designed to expand
 - Organization: `oqf9m6vy6`
 - Hosted Studio: https://true-oath.sanity.studio/
 - Studio app ID: `uk5zu82laqqn2uoecp2yikrq`
-- Knowledge Base: `kbgnQdlEqXlP` (last built snapshot; rebuild after the latest 23-source corpus sync)
+- Knowledge Base: `kbgnQdlEqXlP` (rebuilt from the latest corpus; 41 source units)
 - Dataset embeddings: ready for `production`, projected over accountability text fields
 - Dataset visibility: `public` for read-only inspection; writes remain authorized
 - Vercel deployment: https://true-oath.vercel.app/
@@ -58,7 +58,7 @@ The True Oath Context endpoint is:
 https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context
 ```
 
-The organization token must remain server-side. The endpoint exposes the `kbgnQdlEqXlP` Knowledge Base. The underlying dataset now contains 23 sources and 8 promises; the current refresh has detected the new records. The combined Context source usage is 41 for True Oath plus 46 for Cyber Autopsy = 87, below the stricter 150-document competition budget. Cyber Autopsy's separate Knowledge Base was reduced to a focused 46-source import so the shared index allocation could accommodate True Oath; its underlying dataset was not deleted.
+The organization token must remain server-side. The endpoint exposes the `kbgnQdlEqXlP` Knowledge Base, rebuilt from the latest Studio content. The underlying dataset contains 23 sources and 8 promises; the hosted Context build now reports 41 source units. The combined Context source usage is 41 for True Oath plus 46 for Cyber Autopsy = 87, below the stricter 150-document competition budget. Cyber Autopsy's separate Knowledge Base was reduced to a focused 46-source import so the shared index allocation could accommodate True Oath; its underlying dataset was not deleted.
 
 For a dataset-backed Context endpoint, use the filter below:
 

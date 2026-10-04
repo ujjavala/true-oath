@@ -159,7 +159,7 @@ if (available.includes("groq_query")) {
 }
 ```
 
-The endpoint currently exposes the Knowledge Base tools `initial_context`, `knowledge_base_search`, and `knowledge_base_read`. The Knowledge Base exists as `kbgnQdlEqXlP`. Its refresh has detected the newly synced Studio records and is rebuilding the hosted snapshot. The stricter competition budget is 150 combined documents; live Context usage is 41 True Oath source units plus 46 Cyber Autopsy source units, or 87 total. The organization CLI currently reports a higher technical limit of 5,000, but the project deliberately stays below the competition’s 150-document guidance.
+The endpoint currently exposes the Knowledge Base tools `initial_context`, `knowledge_base_search`, and `knowledge_base_read`. The Knowledge Base exists as `kbgnQdlEqXlP` and has been rebuilt from the newly synced Studio records. The stricter competition budget is 150 combined documents; live Context usage is 41 True Oath source units plus 46 Cyber Autopsy source units, or 87 total. The organization CLI currently reports a higher technical limit of 5,000, but the project deliberately stays below the competition’s 150-document guidance.
 
 **Sanity CLI and deployment.** The Sanity CLI is used for schema builds, hosted Studio deployment, document import, dataset visibility checks, and embedding setup. The Studio is deployed at https://true-oath.sanity.studio/. The web experience is a separate Next.js app deployed at https://true-oath.vercel.app/.
 
@@ -213,7 +213,7 @@ Public dataset inspection endpoint:
 
 https://wak4l160.api.sanity.io/v2025-08-15/data/query/production?query=count%28%2A%29
 
-The True Oath read-only MCP endpoint now exists at `https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context`. It points at `kbgnQdlEqXlP`, and the refresh is rebuilding it from the current Studio dataset. The agent connects with the MCP Knowledge Base tools, searches the accountability content, and retrieves source-linked entries. The organization had a shared index limit while Cyber Autopsy occupied the full allocation, so Cyber Autopsy was reduced to a focused 46-source import to free capacity without deleting its underlying dataset.
+The True Oath read-only MCP endpoint now exists at `https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context`. It points at `kbgnQdlEqXlP`, rebuilt from the current Studio dataset. The agent connects with the MCP Knowledge Base tools, searches the accountability content, and retrieves source-linked entries. The organization had a shared index limit while Cyber Autopsy occupied the full allocation, so Cyber Autopsy was reduced to a focused 46-source import to free capacity without deleting its underlying dataset.
 
 ## Conclusion and What Comes Next
 

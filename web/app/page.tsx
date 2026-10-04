@@ -1,0 +1,30 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import styles from "./page.module.css";
+
+type Status = "Kept" | "In progress" | "Partially kept" | "Not started" | "Unverifiable";
+type PromiseRecord = { title: string; party: string; category: string; status: Status; confidence: number; source: string; detail: string };
+
+const promises: PromiseRecord[] = [
+  { title: "A stronger safeguard for the National Disability Insurance Scheme", party: "Labor", category: "Health", status: "In progress", confidence: 0.84, source: "2024–25 Budget papers", detail: "Implementation is underway, with the evidence record still open on the final shape and timing." },
+  { title: "A national housing accelerator fund", party: "Labor", category: "Housing", status: "Partially kept", confidence: 0.9, source: "Housing Australia", detail: "Funding and agreements exist, but delivery is assessed against the narrower promise language." },
+  { title: "A pathway to cheaper medicines", party: "Labor", category: "Cost of living", status: "Kept", confidence: 0.88, source: "Department of Health", detail: "The policy change is documented in official health policy material and budget measures." },
+  { title: "A faster transition to renewable electricity", party: "Labor", category: "Climate", status: "In progress", confidence: 0.72, source: "Climate Change Authority", detail: "The direction is visible in policy and funding, while the outcome target remains time-bound." },
+  { title: "A federal integrity commission with public hearings", party: "Labor", category: "Integrity", status: "Partially kept", confidence: 0.79, source: "National Anti-Corruption Commission", detail: "The commission exists; this record distinguishes the institution from the broader campaign wording." },
+  { title: "A reduction in migration intake", party: "Coalition", category: "Migration", status: "Unverifiable", confidence: 0.41, source: "ABS population data", detail: "The promise needs a precise baseline, time window, and definition before a verdict can be responsibly assigned." },
+];
+
+const statusClass: Record<Status, string> = { Kept: styles.kept, "In progress": styles.progress, "Partially kept": styles.partial, "Not started": styles.unstarted, Unverifiable: styles.unknown };
+
+export default function Home() {
+  const [filter, setFilter] = useState<"All" | Status>("All");
+  const [selected, setSelected] = useState(promises[0]);
+  const visible = useMemo(() => filter === "All" ? promises : promises.filter((item) => item.status === filter), [filter]);
+  return <main className={styles.shell}>
+    <nav className={styles.nav}><div className={styles.brand}><span className={styles.brandMark}>T</span><span>TRUE OATH</span></div><div className={styles.navLinks}><a className={styles.activeLink} href="#ledger">Ledger</a><a href="#method">Method</a><a href="#sources">Sources</a></div><button className={styles.countryButton}><span className={styles.flag}>AU</span> Australia <span className={styles.chevron}>⌄</span></button></nav>
+    <section className={styles.hero}><div className={styles.eyebrow}><span className={styles.pulse} /> AUSTRALIA / ACCOUNTABILITY LEDGER</div><h1>Promises, <em>with receipts.</em></h1><p className={styles.lede}>A living, source-grounded record of what political parties promised, what governments did, and where the evidence is still incomplete.</p><div className={styles.heroRule} /><div className={styles.stats}><div><strong>06</strong><span>Promises tracked</span></div><div><strong>03</strong><span>Evidence states</span></div><div><strong>01</strong><span>Jurisdiction</span></div><div><strong>2022</strong><span>Election baseline</span></div></div></section>
+    <section className={styles.workspace} id="ledger"><div className={styles.sectionHead}><div><div className={styles.kicker}>THE LEDGER</div><h2>What happened next?</h2></div><div className={styles.updated}>Last reviewed <strong>04 OCT 2026</strong></div></div><div className={styles.filters}>{["All", "Kept", "In progress", "Partially kept", "Unverifiable"].map((item) => <button key={item} className={filter === item ? styles.filterActive : ""} onClick={() => setFilter(item as "All" | Status)}>{item}</button>)}</div><div className={styles.ledgerGrid}><div className={styles.promiseList}>{visible.map((item, index) => <button key={item.title} className={`${styles.promiseRow} ${selected.title === item.title ? styles.selected : ""}`} onClick={() => setSelected(item)}><span className={styles.rowNumber}>{String(index + 1).padStart(2, "0")}</span><span className={styles.rowMain}><strong>{item.title}</strong><small>{item.party} · {item.category}</small></span><span className={`${styles.status} ${statusClass[item.status]}`}>{item.status}</span><span className={styles.rowArrow}>↗</span></button>)}</div><aside className={styles.detailPanel}><div className={styles.detailTop}><span className={`${styles.status} ${statusClass[selected.status]}`}>{selected.status}</span><span className={styles.confidence}>CONFIDENCE {Math.round(selected.confidence * 100)}%</span></div><h3>{selected.title}</h3><p>{selected.detail}</p><div className={styles.evidenceBox}><div className={styles.evidenceLabel}><span className={styles.sourceIcon}>◎</span> EVIDENCE TRAIL</div><strong>{selected.source}</strong><span>Primary source linked in Sanity</span></div><button className={styles.openButton}>Open evidence trail <span>→</span></button></aside></div></section>
+    <section className={styles.method} id="method"><div className={styles.kicker}>THE PROMISE OF THE LEDGER</div><div className={styles.methodGrid}><h2>Political claims are easy.<br /><em>Accountability is structured.</em></h2><p>True Oath separates the promise from the proof. Every assessment is linked to a source, dated, confidence-scored, and kept open to revision when better evidence appears.</p></div></section><footer className={styles.footer} id="sources"><span>TRUE OATH / AUSTRALIA</span><span>Built for careful reading, not instant certainty.</span></footer>
+  </main>;
+}

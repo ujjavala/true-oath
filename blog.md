@@ -46,7 +46,7 @@ npm install
 npm run dev
 ```
 
-Its first screen is an investigative ledger: readers can search and filter the four promise files, select a case file, inspect confidence and linked evidence counts, and jump to the integrity method. The dashboard now includes a status-distribution chart, evidence-depth bars, and an average-confidence readout so the corpus can be scanned before a reader opens an individual file. Lucide icons, responsive layouts, keyboard-friendly controls, status colors, subtle motion, and mobile overflow states are included in the interface.
+Its first screen is an investigative ledger: readers can search and filter the four Sanity-backed promise files, select a case file, inspect confidence and linked evidence counts, and jump to the integrity method. The dashboard now includes a status-distribution chart, evidence-depth bars, an average-confidence readout, and a corpus inventory showing every Sanity document type. Lucide icons, responsive layouts, keyboard-friendly controls, status colors, subtle motion, and mobile overflow states are included in the interface.
 
 The Sanity dataset contains the first independently collected Australia corpus: 15 public sources, 4 promises, 4 evidence records, 4 milestones, 4 outcome indicators, 4 independent assessments, 3 competing claims, 1 manifesto, 1 government record, and 4 integrity events. The `production` dataset is now public-read for judging and API inspection. Public reads do not grant anonymous editing or uploads.
 
@@ -197,7 +197,7 @@ Retrieval: Sanity Context MCP
 Output rule: preserve source links, dates, confidence, and unresolved conflicts
 ```
 
-The True Oath Knowledge Base has been created specifically for this project as `kbgnQdlEqXlP`. Its first build is waiting on the organization's 150-document beta index quota, which is currently consumed by Cyber Autopsy. The Path One agent therefore uses the supported live-dataset GROQ Context mode for True Oath, with a narrow filter over the five accountability document types. It does not reuse Cyber Autopsy's dataset or content.
+The True Oath Knowledge Base was created specifically for this project as `kbgnQdlEqXlP`. After reducing the separate Cyber Autopsy Knowledge Base to a focused 46-source import, the True Oath build completed successfully with 19 sources and no open issues. The Context endpoint now returns navigable Knowledge Base entries, and the local agent has retrieved source-linked promise, milestone, indicator, assessment, and outcome content. It does not reuse Cyber Autopsy's dataset or content.
 
 ## Sanity Project Details
 
@@ -213,7 +213,7 @@ Public dataset inspection endpoint:
 
 https://wak4l160.api.sanity.io/v2025-08-15/data/query/production?query=count%28%2A%29
 
-The True Oath read-only MCP endpoint now exists at `https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context`. The endpoint is authenticated and currently points at the created `kbgnQdlEqXlP` Knowledge Base. I rechecked the build on 5 October 2026: Sanity accepts the source configuration, but the build still rejects the organization-wide plan limit at `169 of 150 indexed documents` because Cyber Autopsy consumes the shared beta quota. The Knowledge Base's separate source allowance is not the same quota. The final agent run therefore still requires either a plan/quota change or switching the endpoint source to the public `wak4l160.production` dataset with embeddings and the accountability GROQ filter.
+The True Oath read-only MCP endpoint now exists at `https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context`. It points at `kbgnQdlEqXlP`, which is now built and ready. The agent connects with the MCP Knowledge Base tools, searches the accountability content, and retrieves source-linked entries. The organization had a shared index limit while Cyber Autopsy occupied the full allocation, so Cyber Autopsy was reduced to a focused 46-source import to free capacity without deleting its underlying dataset.
 
 ## Conclusion and What Comes Next
 
@@ -235,7 +235,7 @@ The final submission still needs a curated Codex transcript showing:
 4. a comparison of supporting and conflicting evidence; and
 5. a cautious answer that distinguishes fact, assessment, uncertainty, and missing data.
 
-The Knowledge Base build is still quota-blocked after a fresh CLI check, so the transcript will show the live-dataset Context MCP route instead. It will be checked for API tokens, private URLs, and other secrets before being made public.
+The Knowledge Base build is now complete. The remaining transcript work is editorial: capture and curate the successful MCP run, then check it for API tokens, private URLs, and other secrets before making it public.
 
 <!-- Add the public DEV Agent Session link here after the final read-only run is complete. -->
 

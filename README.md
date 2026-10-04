@@ -14,7 +14,7 @@ A political accountability ledger starting with Australia and designed to expand
 - Organization: `oqf9m6vy6`
 - Hosted Studio: https://true-oath.sanity.studio/
 - Studio app ID: `uk5zu82laqqn2uoecp2yikrq`
-- Knowledge Base: `kbgnQdlEqXlP` (created; build currently waits for the organization's beta index quota)
+- Knowledge Base: `kbgnQdlEqXlP` (built and ready; 19 sources, no open issues)
 - Dataset embeddings: ready for `production`, projected over accountability text fields
 - Dataset visibility: `public` for read-only inspection; writes remain authorized
 - Vercel deployment: https://true-oath.vercel.app/
@@ -30,7 +30,7 @@ cd sanity && npm run dev
 cd web && npm run dev
 ```
 
-The current web slice is a Vercel-ready investigative ledger. It uses the four tracked promise records as local presentation data while the Sanity-backed agent flow is being wired: search and filters narrow the files, selecting a row opens its case detail, charts summarize status and evidence depth, and the integrity lens explains how findings and unresolved reporting are treated.
+The current web slice is a Vercel-ready investigative ledger. It reads the promise records and corpus counts from the public Sanity `wak4l160.production` dataset through the server-side `/api/ledger` route: search and filters narrow the files, selecting a row opens its case detail, charts summarize status and evidence depth, and the corpus inventory exposes sources, evidence, milestones, indicators, assessments, claims, and integrity events.
 
 The web app is deployed from the `web/` directory as the `true-oath` Vercel project. The public demo is available at https://true-oath.vercel.app/.
 
@@ -52,7 +52,7 @@ The True Oath Context endpoint is:
 https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/true-oath-context
 ```
 
-The organization token must remain server-side. The endpoint currently exposes the `kbgnQdlEqXlP` Knowledge Base. A fresh build check on 5 October 2026 was rejected at the organization-wide plan limit of `169 of 150 indexed documents`; the separate per-Knowledge-Base source allowance shown by the CLI does not remove that shared limit. To complete the live agent run, either upgrade/free the shared index quota or update the endpoint source to the public `wak4l160.production` dataset.
+The organization token must remain server-side. The endpoint exposes the `kbgnQdlEqXlP` Knowledge Base, which is now built and ready. Cyber Autopsy's separate Knowledge Base was reduced to a focused 46-source import so the shared index allocation could accommodate True Oath; its underlying dataset was not deleted.
 
 For a dataset-backed Context endpoint, use the filter below:
 
